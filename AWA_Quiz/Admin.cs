@@ -7,8 +7,8 @@ namespace AWA_Quiz
 {
     public class Admin : User
     {
-        public Admin (int userId, string firstName, string lastName, string userName, string password, string eMailAddress, string role) : 
-            base(userId, firstName, lastName, userName, password, eMailAddress, role)
+        public Admin (string firstName, string lastName, string userName, string password, string eMailAddress, string role) : 
+            base(firstName, lastName, userName, password, eMailAddress, role)
         {
 
         }
