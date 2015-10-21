@@ -255,6 +255,10 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Quiz\Index.cshtml" />
+    <Content Include="Views\Quiz\AddUser.cshtml" />
+    <Content Include="Views\Quiz\AddTest.cshtml" />
+    <Content Include="Views\Quiz\StartTest.cshtml" />
+    <Content Include="Views\Quiz\ViewResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
