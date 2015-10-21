@@ -15,12 +15,96 @@ namespace AWA_Quiz
         string connectionString = Resources.connectionString;
 
 
+        //Get list from database via query
+        public List<string> ReadFromSQL(string commandLine)
+        {
+            myConnection.ConnectionString = connectionString;
+            SqlDataReader myReader = null;
+
+            try
+            {
+                myConnection.Open();
+                myCommand = new SqlCommand();
+                myCommand.Connection = myConnection;
+
+                myCommand.CommandText = commandLine;
+                myReader = myCommand.ExecuteReader();
+
+                List<string> mySQLResult = new List<string>();
+                if (myReader != null)
+                {
+                    while (myReader.Read())
+                    {
+                        for (int i = 0; i < myReader.FieldCount; i++)
+                        {
+                            mySQLResult.Add(myReader[i].ToString());
+                        }
+                    }
+                    return mySQLResult;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            //Catch the exception!!
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                if (myReader != null)
+                {
+                    myReader.Close();
+                }
+                if (myConnection != null)
+                {
+                    myConnection.Close();
+                }
+            }
+        }
+
+
+        //Edit the database via query
+        public void EditSQL(string commandLine)
+        {
+            myConnection.ConnectionString = connectionString;
+            SqlDataReader myReader = null;
+
+            try
+            {
+                myConnection.Open();
+                myCommand.Connection = myConnection;
+
+                myCommand.CommandText = commandLine;
+                myReader = myCommand.ExecuteReader();
+
+            }
+            //Catch the exception!!
+            catch (Exception ex)
+            {
+                
+            }
+            finally
+            {
+                if (myReader != null)
+                {
+                    myReader.Close();
+                }
+                if (myConnection != null)
+                {
+                    myConnection.Close();
+                }
+            }
+        }
+
         public void FindStatistics()
         {
             try
             {
                 myCommand.Connection = myConnection;
-                myConnection.ConnectionString = connectionString; // @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Contacts;Integrated Security=SSPI"
+                myConnection.ConnectionString = connectionString; 
                 myConnection.Open();
 
                 //Call sp

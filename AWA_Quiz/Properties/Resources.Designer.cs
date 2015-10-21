@@ -68,5 +68,14 @@ namespace AWA_Quiz.Properties {
                 return ResourceManager.GetString("connectionString", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to $&quot;Update Title, Description, NrOfCorrectAnswers From Question where QuestionId= {0}&quot;.
+        /// </summary>
+        internal static string updateDb {
+            get {
+                return ResourceManager.GetString("updateDb", resourceCulture);
+            }
+        }
     }
 }
