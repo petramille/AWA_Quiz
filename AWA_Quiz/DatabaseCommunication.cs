@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using AWA_Quiz.Properties;
 
 namespace AWA_Quiz
 {
@@ -11,14 +12,15 @@ namespace AWA_Quiz
         SqlConnection myConnection = new SqlConnection();
         SqlCommand myCommand = new SqlCommand();
 
-        string connectionString;
+        string connectionString = Resources.connectionString;
+
 
         public void FindStatistics()
         {
             try
             {
                 myCommand.Connection = myConnection;
-                myConnection.ConnectionString = connectionString; // @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Contacts;Integrated Security=SSPI";
+                myConnection.ConnectionString = connectionString; // @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Contacts;Integrated Security=SSPI"
                 myConnection.Open();
 
                 //Call sp
