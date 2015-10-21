@@ -121,4 +121,7 @@
     <value>@"Data Source=localhost\SQLEXPRESS;Initial Catalog=Contacts;Integrated Security=SSPI"</value>
     <comment>the connection string to the local AWA_Quiz database</comment>
   </data>
+  <data name="updateDb" xml:space="preserve">
+    <value>$"Update Title, Description, NrOfCorrectAnswers From Question where QuestionId= {0}"</value>
+  </data>
 </root>
