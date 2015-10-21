@@ -7,8 +7,8 @@ namespace AWA_Quiz
 {
     public class Student : User
     {
-        public Student(int userId, string firstName, string lastName, string userName, string password, string eMailAddress, string role) :
-            base(userId, firstName, lastName, userName, password, eMailAddress, role)
+        public Student(string firstName, string lastName, string userName, string password, string eMailAddress, string role) :
+            base( firstName, lastName, userName, password, eMailAddress, role)
         {
 
         }

@@ -7,9 +7,14 @@ namespace AWA_Quiz
 {
     public class Answer
     {
-        public int AnswerId { get; set; }
+        //public int AnswerId { get; set; }
         public string Description { get; set; }
         public bool IsCorrect { get; set; }
 
+        public Answer(string description, bool isCorrect)
+        {
+            Description = description;
+            IsCorrect = isCorrect;
+        }
     }
 }

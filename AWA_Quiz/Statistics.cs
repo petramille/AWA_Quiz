@@ -15,5 +15,10 @@ namespace AWA_Quiz
         public void Calculate()
         {
         }
+
+        public void VisualizeStatistics()
+        {
+
+        }
     }
 }
