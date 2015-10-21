@@ -8,9 +8,25 @@
 <h2>Welcome!</h2>
 <h4>You are logged in as...</h4>
 
-<p>Choose to do new test or view previous results</p>
+<p>Choose how to proceed by clicking one of the buttons below</p>
 <div class="form-group">
-@using (Html.BeginForm("StartNewTest", "Quiz", FormMethod.Post))
+    @using (Html.BeginForm("AddTest", "Quiz", FormMethod.Post))
+    {
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add test" class="btn btn-default" />
+        </div>
+    }
+</div>
+<div class="form-group">
+@using (Html.BeginForm("AddUser", "Quiz", FormMethod.Post))
+{
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Add user" class="btn btn-default" />
+    </div>
+}
+</div>
+<div class="form-group">
+@using (Html.BeginForm("StartTest", "Quiz", FormMethod.Post))
 {
     <div class="col-md-offset-2 col-md-10">
         <input type="submit" value="Start test" class="btn btn-default" />

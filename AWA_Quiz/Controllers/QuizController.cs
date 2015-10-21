@@ -14,17 +14,54 @@ namespace AWA_Quiz.Controllers
             return View();
         }
 
-        public ActionResult StartNewTest()
+        public ActionResult AddTest()
         {
-            string sessionState = "";
-            return this.RedirectToAction("Index", "Quiz", new { error = sessionState });
+            //string sessionState = "";
+            return View("AddTest");
+        }
+
+        [HttpPost]
+        public ActionResult AddTest(string number)
+        {
+            return RedirectToAction("AddTest", number);
         }
 
 
-        public ActionResult ViewHistory()
+        public ActionResult AddUser()
         {
-            string sessionState = "";
-            return this.RedirectToAction("Index", "Quiz", new { error = sessionState });
+           
+            return View("AddUser");
+        }
+
+        [HttpPost]
+        public ActionResult AddUser(string number)
+        {
+            return RedirectToAction("AddUser", number);
+        }
+
+
+        public ActionResult StartTest()
+        {
+            
+            return View("StartTest");
+        }
+
+        [HttpPost]
+        public ActionResult StartTest(string number)
+        {
+            return RedirectToAction("StartTest", number);
+        }
+
+        public ActionResult ViewResult()
+        {
+            
+            return View("ViewResults");
+        }
+
+        [HttpPost]
+        public ActionResult ViewResult(string number)
+        {
+            return RedirectToAction("ViewResults", number);
         }
     }
 }
