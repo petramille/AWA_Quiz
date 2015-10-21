@@ -61,7 +61,7 @@ namespace AWA_Quiz.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to @&quot;Data Source=localhost\SQLEXPRESS;Initial Catalog=Contacts;Integrated Security=SSPI&quot;.
+        ///   Looks up a localized string similar to Data Source=localhost\SQLEXPRESS;Initial Catalog=Contacts;Integrated Security=SSPI.
         /// </summary>
         internal static string connectionString {
             get {
