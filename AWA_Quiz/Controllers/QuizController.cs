@@ -13,5 +13,18 @@ namespace AWA_Quiz.Controllers
         {
             return View();
         }
+
+        public ActionResult StartNewTest()
+        {
+            string sessionState = "";
+            return this.RedirectToAction("Index", "Quiz", new { error = sessionState });
+        }
+
+
+        public ActionResult ViewHistory()
+        {
+            string sessionState = "";
+            return this.RedirectToAction("Index", "Quiz", new { error = sessionState });
+        }
     }
 }
