@@ -179,7 +179,7 @@ namespace AWA_Quiz
             }
         }
 
-        public void AddAnswer(int questionId, Answer answer)
+        public void AddAnswer(Answer answer, int questionId)
         {
             try
             {
