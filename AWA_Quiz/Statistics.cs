@@ -14,8 +14,9 @@ namespace AWA_Quiz
         private int userId;
         private bool IsCorrect;
 
-        public void Calculate()
+        public void Calculate(User user, Question question, bool isCorrect)
         {
+
         }
 
         public void VisualizeStatistics()

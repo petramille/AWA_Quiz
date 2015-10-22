@@ -15,8 +15,9 @@ namespace AWA_Quiz
         string connectionString = Resources.connectionString;
 
 
-        //Get list from database via query
-        public List<string> ReadFromSQL(string commandLine)
+        //Get list from database via view - all quiz info
+        //View was created but difficult to handle same name from different original tables
+        public List<string> ReadFromSQL(string quizTitle)
         {
             myConnection.ConnectionString = connectionString;
             SqlDataReader myReader = null;
@@ -27,7 +28,7 @@ namespace AWA_Quiz
                 myCommand = new SqlCommand();
                 myCommand.Connection = myConnection;
 
-                myCommand.CommandText = commandLine;
+                myCommand.CommandText = "sp_GetQuiz";
                 myReader = myCommand.ExecuteReader();
 
                 List<string> mySQLResult = new List<string>();
@@ -111,15 +112,15 @@ namespace AWA_Quiz
                 myCommand.CommandType = System.Data.CommandType.StoredProcedure;
                 myCommand.Parameters.Clear();
 
-                myCommand.Parameters.Add("@Title", System.Data.SqlDbType.VarChar, 50);
-                myCommand.Parameters.Add("@Description", System.Data.SqlDbType.VarChar, 250); //size is max
-                myCommand.Parameters.Add("@Category", System.Data.SqlDbType.VarChar, 50);
-                myCommand.Parameters.Add("@CreationDate", System.Data.SqlDbType.Date);
+                myCommand.Parameters.Add("@QuizTitle", System.Data.SqlDbType.VarChar, 50);
+                myCommand.Parameters.Add("@QuizDescription", System.Data.SqlDbType.VarChar, 250); //size is max
+                myCommand.Parameters.Add("@QuizCategory", System.Data.SqlDbType.VarChar, 50);
+                myCommand.Parameters.Add("@QuizCreationDate", System.Data.SqlDbType.Date);
 
-                myCommand.Parameters["@Title"].Value = quiz.Title;
-                myCommand.Parameters["@Description"].Value = quiz.Description;
-                myCommand.Parameters["@Category"].Value = quiz.Category;
-                myCommand.Parameters["@CreationDate"].Value = quiz.CreationDate;
+                myCommand.Parameters["@QuizTitle"].Value = quiz.Title;
+                myCommand.Parameters["@QuizDescription"].Value = quiz.Description;
+                myCommand.Parameters["@QuizCategory"].Value = quiz.Category;
+                myCommand.Parameters["@QuizCreationDate"].Value = quiz.CreationDate;
 
 
                 myCommand.Parameters["@QuizId"].Direction = System.Data.ParameterDirection.Output;
@@ -152,16 +153,16 @@ namespace AWA_Quiz
                 myCommand.Parameters.Clear();
 
                 myCommand.Parameters.Add("@QuizID", System.Data.SqlDbType.Int);
-                myCommand.Parameters.Add("@Title", System.Data.SqlDbType.VarChar, 250); //size is max
-                myCommand.Parameters.Add("@Description", System.Data.SqlDbType.VarChar, 250); //size is max
-                myCommand.Parameters.Add("@CreationDate", System.Data.SqlDbType.Date);
-                myCommand.Parameters.Add("@NrOfCorrectAnswers", System.Data.SqlDbType.Int);
+                myCommand.Parameters.Add("@QuestionTitle", System.Data.SqlDbType.VarChar, 250); //size is max
+                myCommand.Parameters.Add("@QuestionDescription", System.Data.SqlDbType.VarChar, 250); //size is max
+                myCommand.Parameters.Add("@QuestionCreationDate", System.Data.SqlDbType.Date);
+                myCommand.Parameters.Add("@QuestionNrOfCorrectAnswers", System.Data.SqlDbType.Int);
 
                 myCommand.Parameters["@QuizID"].Value = quizId;
-                myCommand.Parameters["@Title"].Value = question.Title;
-                myCommand.Parameters["@Description"].Value = question.Description;
-                myCommand.Parameters["@CreationDate"].Value = question.CreationDate;
-                myCommand.Parameters["@NrOfCorrectAnswers"].Value = question.NumberOfCorrectAnswers;
+                myCommand.Parameters["@QuestionTitle"].Value = question.Title;
+                myCommand.Parameters["@QuestionDescription"].Value = question.Description;
+                myCommand.Parameters["@QuestionCreationDate"].Value = question.CreationDate;
+                myCommand.Parameters["@QuestionNrOfCorrectAnswers"].Value = question.NumberOfCorrectAnswers;
 
                 myCommand.Parameters["@QuestionId"].Direction = System.Data.ParameterDirection.Output;
 
@@ -192,19 +193,19 @@ namespace AWA_Quiz
                 myCommand.Parameters.Clear();
 
                 myCommand.Parameters.Add("@QuestionID", System.Data.SqlDbType.Int);
-                myCommand.Parameters.Add("@Description", System.Data.SqlDbType.VarChar, 250); //size is max
-                myCommand.Parameters.Add("@IsCorrectAnswer", System.Data.SqlDbType.Int);
+                myCommand.Parameters.Add("@AnswerDescription", System.Data.SqlDbType.VarChar, 250); //size is max
+                myCommand.Parameters.Add("@AnswerIsCorrectAnswer", System.Data.SqlDbType.Int);
 
 
                 myCommand.Parameters["@QuestionID"].Value = questionId;
-                myCommand.Parameters["@Description"].Value = answer.AnswerText;
+                myCommand.Parameters["@AnswerDescription"].Value = answer.AnswerText;
                 if (answer.IsCorrect)
                 {
-                    myCommand.Parameters["@IsCorrectAnswer"].Value = 1;
+                    myCommand.Parameters["@AnswerIsCorrectAnswer"].Value = 1;
                 }
                 else
                 {
-                    myCommand.Parameters["@IsCorrectAnswer"].Value = 0;
+                    myCommand.Parameters["@AnswerIsCorrectAnswer"].Value = 0;
                 }
 
                 myCommand.ExecuteNonQuery();
@@ -231,12 +232,10 @@ namespace AWA_Quiz
                 myCommand.Parameters.Clear();
 
                 //Write parameters to add
-                myCommand.Parameters.Add("@Title", System.Data.SqlDbType.VarChar, 50);
-                myCommand.Parameters.Add("@Description", System.Data.SqlDbType.VarChar, 250); //size is max
-                myCommand.Parameters.Add("@Category", System.Data.SqlDbType.VarChar, 50);
-                myCommand.Parameters.Add("@CreationDate", System.Data.SqlDbType.Date);
+                myCommand.Parameters.Add("@QuizTitle", System.Data.SqlDbType.VarChar, 50);
+                
 
-                myCommand.Parameters["@Title"].Value = title;
+                myCommand.Parameters["@QuizTitle"].Value = title;
 
                 myCommand.Parameters["@"].Direction = System.Data.ParameterDirection.Output;
 

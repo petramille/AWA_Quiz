@@ -35,11 +35,10 @@ namespace AWA_Quiz
             myDataBase.AddAnswer(newAnswer, questionId);
         }
 
-        //How to choose what quiz to display, id or title?
+        //How to choose what quiz to display, id or title? use a view to get all quiz info?
         public void ReadQuiz(string title)
         {
-            string commandLine = $"SELECT Title, Description From Question where Title = '{title}'";
-            myDataBase.ReadFromSQL(commandLine);
+            myDataBase.ReadFromSQL(title);
         }
 
         public void UpdateQuestion(int questionId, string title, string description, int numberOfCorrectAnswers)
@@ -54,10 +53,10 @@ namespace AWA_Quiz
             myDataBase.EditSQL(commandLine);
         }
 
-
+        //Trigger delete from intermediate tables and Answer table???? Now only the question is deleted
         public void DeleteQuestion(int questionId)
         {
-            string commandLine = $"DELETE FROM Question WHERE {questionId} = @QuestionId"; //Trigger delete from intermediate tables and Answer table????
+            string commandLine = $"DELETE FROM Question WHERE {questionId} = @QuestionId"; 
             myDataBase.EditSQL(commandLine);
         }
     }

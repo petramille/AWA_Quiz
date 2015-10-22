@@ -14,18 +14,12 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		Petra Mille
+-- Author:		<Author,,Name>
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[sp_AddQuiz]
-	-- Add the parameters for the stored procedure here
-	@QuizTitle varchar(50),
-	@QuizDescription varchar(MAX),
-	@QuizCategory varchar(50),
-	@QuizCreationDate date,
-	@QuizId int output
-	
+CREATE PROCEDURE [dbo].[sp_GetQuiz]
+@QuizTitle varchar(50)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -33,7 +27,7 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	INSERT INTO Quiz (QuizTitle, QuizDescription, QuizCategory, QuizCreationDate) VALUES (@QuizTitle, @QuizDescription, @QuizCategory, @QuizCreationDate)
-	SET @QuizID=SCOPE_IDENTITY()
-	SET NOCOUNT OFF;
+	SELECT QuizID, QuestionID, AnswerID, QuizDescription, QuizCategory, QuestionTitle, QuestionDescription, QuestionNrOfCorrectAnswers, AnswerDescription, AnswerIsCorrectAnswer FROM View_GetAllQuizData WHERE QuizTitle = @QuizTitle
+
+	SET NOCOUNT OFF
 END

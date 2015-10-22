@@ -84,8 +84,8 @@ SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Answer](
 	[AnswerID] [int] IDENTITY(1,1) NOT NULL,
-	[Description] [varchar](MAX) NOT NULL,
-	[IsCorrectAnswer] [int] NOT NULL,
+	[AnswerDescription] [varchar](MAX) NOT NULL,
+	[AnswerIsCorrectAnswer] [int] NOT NULL,
  CONSTRAINT [PK_Answer] PRIMARY KEY CLUSTERED 
 (
 	[AnswerID] ASC
@@ -104,10 +104,10 @@ SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Question](
 	[QuestionID] [int] IDENTITY(1,1) NOT NULL,
-	[CreationDate] [date] NOT NULL,
-	[Title] [varchar](max) NOT NULL,
-	[Description] [varchar](max),
-	[NrOfCorrectAnswers] [int] NOT NULL,
+	[QuestionCreationDate] [date] NOT NULL,
+	[QuestionTitle] [varchar](max) NOT NULL,
+	[QuestionDescription] [varchar](max),
+	[QuestionNrOfCorrectAnswers] [int] NOT NULL,
  CONSTRAINT [PK_Question] PRIMARY KEY CLUSTERED 
 (
 	[QuestionID] ASC
@@ -142,10 +142,10 @@ SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Quiz](
 	[QuizID] [int] NOT NULL,
-	[CreationDate] [date] NOT NULL,
-	[Title] [varchar](50) NOT NULL,
-	[Category] [varchar](50) NOT NULL,
-	[Description] [varchar](max) NOT NULL
+	[QuizCreationDate] [date] NOT NULL,
+	[QuizTitle] [varchar](50) NOT NULL,
+	[QuizCategory] [varchar](50) NOT NULL,
+	[QuizDescription] [varchar](max) NOT NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
