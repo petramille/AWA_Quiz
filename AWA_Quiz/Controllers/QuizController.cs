@@ -9,6 +9,7 @@ namespace AWA_Quiz.Controllers
     public class QuizController : Controller
     {
         // GET: Quiz
+        [Authorize]
         public ActionResult Index()
         {
             return View();
