@@ -84,7 +84,7 @@ namespace AWA_Quiz
             //Catch the exception!!
             catch (Exception ex)
             {
-                
+
             }
             finally
             {
@@ -104,15 +104,13 @@ namespace AWA_Quiz
             try
             {
                 myCommand.Connection = myConnection;
-                myConnection.ConnectionString = connectionString; 
+                myConnection.ConnectionString = connectionString;
                 myConnection.Open();
 
-                //Call sp
-                myCommand.CommandText = "";
+                myCommand.CommandText = "sp_AddQuiz";
                 myCommand.CommandType = System.Data.CommandType.StoredProcedure;
                 myCommand.Parameters.Clear();
 
-                //Write parameters to add
                 myCommand.Parameters.Add("@Title", System.Data.SqlDbType.VarChar, 50);
                 myCommand.Parameters.Add("@Description", System.Data.SqlDbType.VarChar, 250); //size is max
                 myCommand.Parameters.Add("@Category", System.Data.SqlDbType.VarChar, 50);
@@ -129,9 +127,9 @@ namespace AWA_Quiz
                 myCommand.ExecuteNonQuery();
                 myConnection.Close();
 
-                int quizId = 0;
+                int quizId = System.Convert.ToInt32(myCommand.Parameters["@QuizId"].Value);
                 return quizId;
-                
+
             }
             catch (Exception)
             {
@@ -140,22 +138,119 @@ namespace AWA_Quiz
             }
         }
 
-        public void AddQuestion()
+
+        public int AddQuestion(Question question, int quizId)
         {
-            //for (int i = 0; i < quiz.questionList.Count; i++)
-            //{
-            //    myCommand.Parameters.Add("@Title", System.Data.SqlDbType.VarChar, 250); //size is max
-            //    myCommand.Parameters.Add("@Description", System.Data.SqlDbType.VarChar, 250); //size is max
-            //    myCommand.Parameters.Add("@CreationDate", System.Data.SqlDbType.Date);
-            //    myCommand.Parameters.Add("@NrOfCorrectAnswers", System.Data.SqlDbType.Int);
+            try
+            {
+                myCommand.Connection = myConnection;
+                myConnection.ConnectionString = connectionString;
+                myConnection.Open();
 
-            //    //go through all answers
-            //    //for (int i = 0; i < quiz.questionList.an; i++)
-            //    //{
+                myCommand.CommandText = "sp_AddQuestion";
+                myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                myCommand.Parameters.Clear();
 
-            //    //}
+                myCommand.Parameters.Add("@QuizID", System.Data.SqlDbType.Int);
+                myCommand.Parameters.Add("@Title", System.Data.SqlDbType.VarChar, 250); //size is max
+                myCommand.Parameters.Add("@Description", System.Data.SqlDbType.VarChar, 250); //size is max
+                myCommand.Parameters.Add("@CreationDate", System.Data.SqlDbType.Date);
+                myCommand.Parameters.Add("@NrOfCorrectAnswers", System.Data.SqlDbType.Int);
 
-            //}
+                myCommand.Parameters["@QuizID"].Value = quizId;
+                myCommand.Parameters["@Title"].Value = question.Title;
+                myCommand.Parameters["@Description"].Value = question.Description;
+                myCommand.Parameters["@CreationDate"].Value = question.CreationDate;
+                myCommand.Parameters["@NrOfCorrectAnswers"].Value = question.NumberOfCorrectAnswers;
+
+                myCommand.Parameters["@QuestionId"].Direction = System.Data.ParameterDirection.Output;
+
+                myCommand.ExecuteNonQuery();
+                myConnection.Close();
+
+                int questionId = System.Convert.ToInt32(myCommand.Parameters["@QuestionId"].Value);
+                return questionId;
+
+            }
+            catch (Exception)
+            {
+
+                return 0;
+            }
+        }
+
+        public void AddAnswer(Answer answer, int questionId)
+        {
+            try
+            {
+                myCommand.Connection = myConnection;
+                myConnection.ConnectionString = connectionString;
+                myConnection.Open();
+
+                myCommand.CommandText = "sp_AddAnswer";
+                myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                myCommand.Parameters.Clear();
+
+                myCommand.Parameters.Add("@QuestionID", System.Data.SqlDbType.Int);
+                myCommand.Parameters.Add("@Description", System.Data.SqlDbType.VarChar, 250); //size is max
+                myCommand.Parameters.Add("@IsCorrectAnswer", System.Data.SqlDbType.Int);
+
+
+                myCommand.Parameters["@QuestionID"].Value = questionId;
+                myCommand.Parameters["@Description"].Value = answer.AnswerText;
+                if (answer.IsCorrect)
+                {
+                    myCommand.Parameters["@IsCorrectAnswer"].Value = 1;
+                }
+                else
+                {
+                    myCommand.Parameters["@IsCorrectAnswer"].Value = 0;
+                }
+
+                myCommand.ExecuteNonQuery();
+                myConnection.Close();
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+        }
+        public void ReadQuiz(string title)
+        {
+            try
+            {
+                myCommand.Connection = myConnection;
+                myConnection.ConnectionString = connectionString;
+                myConnection.Open();
+
+                //Call sp
+                myCommand.CommandText = "";
+                myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                myCommand.Parameters.Clear();
+
+                //Write parameters to add
+                myCommand.Parameters.Add("@Title", System.Data.SqlDbType.VarChar, 50);
+                myCommand.Parameters.Add("@Description", System.Data.SqlDbType.VarChar, 250); //size is max
+                myCommand.Parameters.Add("@Category", System.Data.SqlDbType.VarChar, 50);
+                myCommand.Parameters.Add("@CreationDate", System.Data.SqlDbType.Date);
+
+                myCommand.Parameters["@Title"].Value = title;
+
+                myCommand.Parameters["@"].Direction = System.Data.ParameterDirection.Output;
+
+                myCommand.ExecuteNonQuery();
+                myConnection.Close();
+
+
+
+            }
+            catch (Exception)
+            {
+
+
+            }
         }
     }
 }

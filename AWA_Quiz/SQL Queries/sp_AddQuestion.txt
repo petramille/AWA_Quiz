@@ -1,0 +1,32 @@
+﻿SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Petra Mille
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+
+	CREATE PROCEDURE [dbo].[sp_AddQuestion] 
+	-- Add the parameters for the stored procedure here
+	@Title varchar(MAX),
+	@Description varchar(MAX),
+	@CreationDate date,
+	@NrOfCorrectAnswers int,
+	@QuizID int,
+	@QuestionID int output
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	INSERT INTO Question (Title, Description, CreationDate, NrOfCorrectAnswers) VALUES (@Title, @Description, @CreationDate, @NrOfCorrectAnswers)
+	
+	SET @QuestionID=SCOPE_IDENTITY()
+	INSERT INTO QuizQuestion (QuizID, QuestionID) VALUES (@QuizID, @QuestionID)
+	SET NOCOUNT OFF;
+END

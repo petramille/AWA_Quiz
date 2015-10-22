@@ -224,6 +224,9 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="SQL Queries\AddTestData.txt" />
     <Content Include="SQL Queries\CreateDatabase.txt" />
+    <Content Include="SQL Queries\sp_AddAnswer.txt" />
+    <Content Include="SQL Queries\sp_AddQuestion.txt" />
+    <Content Include="SQL Queries\sp_AddQuiz.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
