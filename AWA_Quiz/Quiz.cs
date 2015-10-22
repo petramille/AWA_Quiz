@@ -13,15 +13,15 @@ namespace AWA_Quiz
         public string Category { get; set; }
         public DateTime CreationDate { get; set; }
 
-        private List<Question> questionList;
+        public List<Question> questionList;
 
-        public Quiz(string title, string description, string category, DateTime creationDate, List<Question> questionList)
+        public Quiz(string title, string description, string category, DateTime creationDate)
         {
             Title = title;
             Description = description;
             Category = category;
             CreationDate = creationDate;
-            this.questionList = questionList;
+            
         }
 
        

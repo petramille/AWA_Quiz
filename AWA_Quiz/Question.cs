@@ -13,7 +13,7 @@ namespace AWA_Quiz
         public DateTime CreationDate { get; set; }
         public int NumberOfCorrectAnswers { get; set; }
 
-        private List<Answer> answerList;
+        public List<Answer> answerList;
 
         public Question(string title, string description, DateTime creationDate, int numberOfCorrectAnswers, List<Answer> answerList)
         {

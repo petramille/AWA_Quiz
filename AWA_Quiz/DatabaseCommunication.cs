@@ -99,7 +99,7 @@ namespace AWA_Quiz
             }
         }
 
-        public void AddQuiz(Quiz quiz)
+        public int AddQuiz(Quiz quiz)
         {
             try
             {
@@ -113,28 +113,49 @@ namespace AWA_Quiz
                 myCommand.Parameters.Clear();
 
                 //Write parameters to add
-                myCommand.Parameters.Add("@Title", System.Data.SqlDbType.VarChar, 12);
-                myCommand.Parameters.Add("@Description", System.Data.SqlDbType.VarChar, 12);
-                myCommand.Parameters.Add("@CreationDate", System.Data.SqlDbType.VarChar, 12);
-                myCommand.Parameters.Add("@NrOfCorrectAnswers", System.Data.SqlDbType.VarChar, 12);
+                myCommand.Parameters.Add("@Title", System.Data.SqlDbType.VarChar, 50);
+                myCommand.Parameters.Add("@Description", System.Data.SqlDbType.VarChar, 250); //size is max
+                myCommand.Parameters.Add("@Category", System.Data.SqlDbType.VarChar, 50);
+                myCommand.Parameters.Add("@CreationDate", System.Data.SqlDbType.Date);
+
+                myCommand.Parameters["@Title"].Value = quiz.Title;
+                myCommand.Parameters["@Description"].Value = quiz.Description;
+                myCommand.Parameters["@Category"].Value = quiz.Category;
+                myCommand.Parameters["@CreationDate"].Value = quiz.CreationDate;
 
 
-
-                myCommand.Parameters["@Title"].Value = "";
-                
-                
-                myCommand.Parameters["@"].Direction = System.Data.ParameterDirection.Output;
+                myCommand.Parameters["@QuizId"].Direction = System.Data.ParameterDirection.Output;
 
                 myCommand.ExecuteNonQuery();
-
                 myConnection.Close();
+
+                int quizId = 0;
+                return quizId;
                 
             }
             catch (Exception)
             {
-               
-                
+
+                return 0;
             }
+        }
+
+        public void AddQuestion()
+        {
+            //for (int i = 0; i < quiz.questionList.Count; i++)
+            //{
+            //    myCommand.Parameters.Add("@Title", System.Data.SqlDbType.VarChar, 250); //size is max
+            //    myCommand.Parameters.Add("@Description", System.Data.SqlDbType.VarChar, 250); //size is max
+            //    myCommand.Parameters.Add("@CreationDate", System.Data.SqlDbType.Date);
+            //    myCommand.Parameters.Add("@NrOfCorrectAnswers", System.Data.SqlDbType.Int);
+
+            //    //go through all answers
+            //    //for (int i = 0; i < quiz.questionList.an; i++)
+            //    //{
+
+            //    //}
+
+            //}
         }
     }
 }

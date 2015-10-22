@@ -10,6 +10,10 @@ namespace AWA_Quiz.Models
     public class QuizViewModel
     {
         //public int Id { get; set; }
+        [DisplayName("Category")]
+        [Required]
+        //[RegularExpression(@"^[a-zA-Z0-9u+2423]{2,20}$", ErrorMessage = "")]
+        public string Category { get; set; }
 
         [DisplayName("Question")]
         [Required]
