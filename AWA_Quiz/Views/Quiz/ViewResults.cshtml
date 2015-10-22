@@ -5,6 +5,32 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>View results</h2>
-<p>Lite text</p>
+<h4>Results</h4>
+
+
+
+<div class="form-group">
+    @using (Html.BeginForm("ViewResults", "Quiz", FormMethod.Post))
+    {
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Choose person" class="btn btn-default" />
+        </div>
+    }
+</div>
+<div class="form-group">
+    @using (Html.BeginForm("ViewResults", "Quiz", FormMethod.Post))
+    {
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Choose quiz" class="btn btn-default" />
+        </div>
+    }
+</div>
+<div class="form-group">
+    @using (Html.BeginForm("Index", "Quiz", FormMethod.Post))
+    {
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Cancel" class="btn btn-default" />
+        </div>
+    }
+</div>
 

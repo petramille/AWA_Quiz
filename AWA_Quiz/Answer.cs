@@ -8,12 +8,12 @@ namespace AWA_Quiz
     public class Answer
     {
         //public int AnswerId { get; set; }
-        public string Description { get; set; }
+        public string AnswerText { get; set; }
         public bool IsCorrect { get; set; }
 
-        public Answer(string description, bool isCorrect)
+        public Answer(string answerText, bool isCorrect)
         {
-            Description = description;
+            AnswerText = answerText;
             IsCorrect = isCorrect;
         }
     }

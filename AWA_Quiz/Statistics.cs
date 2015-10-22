@@ -7,6 +7,8 @@ namespace AWA_Quiz
 {
     public class Statistics
     {
+        DatabaseCommunication myDatabase = new DatabaseCommunication();
+
         private int quizId;
         private int questionId;
         private int userId;

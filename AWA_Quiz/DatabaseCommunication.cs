@@ -99,7 +99,7 @@ namespace AWA_Quiz
             }
         }
 
-        public void FindStatistics()
+        public void AddQuiz(Quiz quiz)
         {
             try
             {

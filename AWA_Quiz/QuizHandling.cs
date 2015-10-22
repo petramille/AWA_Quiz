@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace AWA_Quiz
 {
@@ -15,6 +17,7 @@ namespace AWA_Quiz
         {
             DateTime creationDate = DateTime.Now;
             Quiz newQuiz = new Quiz(title, description, category, creationDate, questionList);
+            myDataBase.AddQuiz(newQuiz);
         }
 
         public void CreateQuestion(string title, string description, int numberOfCorrectAnswers, List<Answer> answerList)
@@ -24,11 +27,10 @@ namespace AWA_Quiz
             Question newQuestion = new Question(title, description, creationDate, numberOfCorrectAnswers, answerList);
             List<Question> questionList = new List<Question>();
             questionList.Add(newQuestion);
-            //Session with all questions that should be added to the quiz
-            
+            //Save the list temporarily, session?
         }
 
-        //How to choose what quiz to display, id or title
+        //How to choose what quiz to display, id or title?
         public void ReadQuiz(string title)
         {
             string commandLine = $"SELECT UnitStatus From Unit where Id = '{title}'";

@@ -27,18 +27,6 @@ namespace AWA_Quiz.Controllers
         }
 
 
-        public ActionResult AddUser()
-        {
-           
-            return View("AddUser");
-        }
-
-        [HttpPost]
-        public ActionResult AddUser(string number)
-        {
-            return RedirectToAction("AddUser", number);
-        }
-
 
         public ActionResult StartTest()
         {
