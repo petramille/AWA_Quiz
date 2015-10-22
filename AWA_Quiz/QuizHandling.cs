@@ -13,45 +13,52 @@ namespace AWA_Quiz
         DatabaseCommunication myDataBase = new DatabaseCommunication();
 
 
-        public void CreateQuiz(string title, string description, string category)
+        public int CreateQuiz(string title, string description, string category)
         {
             DateTime creationDate = DateTime.Now;
             Quiz newQuiz = new Quiz(title, description, category, creationDate);
             int quizId = myDataBase.AddQuiz(newQuiz);
+            return quizId;
         }
 
-        public void CreateQuestion(string title, string description, int numberOfCorrectAnswers, List<Answer> answerList)
+        public void CreateQuestion(int quizId, string title, string description, int numberOfCorrectAnswers, List<Answer> answerList)
         {
             DateTime creationDate = DateTime.Now;
             Question newQuestion = new Question(title, description, creationDate, numberOfCorrectAnswers, answerList);
-            List<Question> questionList = new List<Question>();
-            questionList.Add(newQuestion);
-            //Save the list temporarily, session?
+            int questionId = myDataBase.AddQuestion(newQuestion, quizId);
+            
         }
 
-        public void CreateAnswer(string answerText, bool isCorrect)
+        public void CreateAnswer(int questionId, string answerText, bool isCorrect)
         {
             Answer newAnswer = new Answer(answerText, isCorrect);
-            List<Answer> answerList = new List<Answer>();
-            answerList.Add(newAnswer);
+            myDataBase.AddAnswer(newAnswer, questionId);
         }
 
         //How to choose what quiz to display, id or title?
         public void ReadQuiz(string title)
         {
-            string commandLine = $"SELECT UnitStatus From Unit where Id = '{title}'";
+            string commandLine = $"SELECT Title, Description From Question where Title = '{title}'";
             myDataBase.ReadFromSQL(commandLine);
         }
 
-        public void UpdateQuestion(string title, string description, int numberOfCorrectAnswers, List<Answer> answerList)
+        public void UpdateQuestion(int questionId, string title, string description, int numberOfCorrectAnswers)
         {
-            //string commandLine = ({Resources.updateDb}, title);
-            //myDataBase.EditSQL(commandLine);
+            string commandLine = $"UPDATE Question SET {title} = @Title, {description} = @Description, {numberOfCorrectAnswers} = @NrOfCorrectAnswers, WHERE {questionId} = @QuestionId";
+            myDataBase.EditSQL(commandLine);
         }
 
-        public void DeleteQuestion()
+        public void UpdateAnswer(int answerId, string answerText, bool isCorrect)
         {
+            string commandLine = $"UPDATE Answer SET {answerText} = @Description, {isCorrect} = @IsCorrectAnswer, WHERE {answerId} = @AnswerId";
+            myDataBase.EditSQL(commandLine);
+        }
 
+
+        public void DeleteQuestion(int questionId)
+        {
+            string commandLine = $"DELETE FROM Question WHERE {questionId} = @QuestionId"; //Trigger delete from intermediate tables and Answer table????
+            myDataBase.EditSQL(commandLine);
         }
     }
 }

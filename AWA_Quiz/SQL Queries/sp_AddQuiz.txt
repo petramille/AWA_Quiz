@@ -1,0 +1,39 @@
+﻿-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Petra Mille
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[sp_AddQuiz]
+	-- Add the parameters for the stored procedure here
+	@Title varchar(50)
+	@Description varchar(MAX)
+	@Category varchar(50)
+	@CreationDate date
+	@QuizId int output
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	INSERT INTO Quiz (Title, Description, Category, CreationDate) VALUES (@Title, @Description, @Category, @CreationDate)
+	SET @QuizID=SCOPE_IDENTITY()
+	SET NOCOUNT OFF;
+END
