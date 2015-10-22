@@ -5,40 +5,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Welcome!</h2>
-<h4>You are logged in as...</h4>
+<div class="jumbotron">
+    <h3>Home</h3>
+    <p class="lead">Welcome to your own personal homepage!</p>
+</div>
+
+<p>Here you can take quizzes, fill in this week's review or see your own statistics. </p>
 
 <p>Choose how to proceed by clicking one of the buttons below</p>
-<div class="form-group">
-    @using (Html.BeginForm("AddTest", "Quiz", FormMethod.Post))
-    {
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Add test" class="btn btn-default" />
-        </div>
-    }
+
+<div>
+    @Html.ActionLink("Add Test", "AddTest", "Quiz", new { @class = "btn btn-default" })
+    @Html.ActionLink("Add User", "AddUser", "User", new { @class = "btn btn-default" })
+    @Html.ActionLink("Start Quiz", "StartTest", "Quiz", new { @class = "btn btn-default" })
+    @Html.ActionLink("View Statistics", "ViewHistory", "Quiz", new { @class = "btn btn-default" })
+
 </div>
-<div class="form-group">
-@using (Html.BeginForm("AddUser", "User", FormMethod.Post))
-{
-    <div class="col-md-offset-2 col-md-10">
-        <input type="submit" value="Add user" class="btn btn-default" />
-    </div>
-}
-</div>
-<div class="form-group">
-@using (Html.BeginForm("StartTest", "Quiz", FormMethod.Post))
-{
-    <div class="col-md-offset-2 col-md-10">
-        <input type="submit" value="Start test" class="btn btn-default" />
-    </div>
-}
-</div>
-<div></div>
-<div class="form-group">
-@using (Html.BeginForm("ViewHistory", "Quiz", FormMethod.Post))
-{
-    <div class="col-md-offset-2 col-md-10">
-        <input type="submit" value="View result" class="btn btn-default" />
-    </div>
-}
-</div>
+<p>Area for quizes and reviews not taken?</p>
+<br/>
+<p>Area for the lastest statistics?</p>
+
