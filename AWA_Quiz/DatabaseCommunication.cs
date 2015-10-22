@@ -113,11 +113,14 @@ namespace AWA_Quiz
                 myCommand.Parameters.Clear();
 
                 //Write parameters to add
-                myCommand.Parameters.Add("@Username", System.Data.SqlDbType.VarChar, 12);
-                
+                myCommand.Parameters.Add("@Title", System.Data.SqlDbType.VarChar, 12);
+                myCommand.Parameters.Add("@Description", System.Data.SqlDbType.VarChar, 12);
+                myCommand.Parameters.Add("@CreationDate", System.Data.SqlDbType.VarChar, 12);
+                myCommand.Parameters.Add("@NrOfCorrectAnswers", System.Data.SqlDbType.VarChar, 12);
 
 
-                myCommand.Parameters["@Username"].Value = "";
+
+                myCommand.Parameters["@Title"].Value = "";
                 
                 
                 myCommand.Parameters["@"].Direction = System.Data.ParameterDirection.Output;
