@@ -38,7 +38,7 @@ namespace AWA_Quiz
         //How to choose what quiz to display, id or title? use a view to get all quiz info?
         public void ReadQuiz(string title)
         {
-            myDataBase.ReadFromSQL(title);
+            List<string> myQuiz = myDataBase.ReadFromSQL(title, "sp_GetQuiz");
         }
 
         public void UpdateQuestion(int questionId, string title, string description, int numberOfCorrectAnswers)
@@ -57,6 +57,20 @@ namespace AWA_Quiz
         public void DeleteQuestion(int questionId)
         {
             string commandLine = $"DELETE FROM Question WHERE {questionId} = @QuestionId"; 
+            myDataBase.EditSQL(commandLine);
+        }
+
+        public void UpdateStatistics(int quizId, int questionId, int userId, bool isCorrect)
+        {
+            string commandLine;
+            if (isCorrect)
+            {
+                commandLine = $"UPDATE Statistic SET {quizId} = @QuizID, {questionId} = @QuestionID, {userId} = @UserID, {1} = @AnsweredCorrectly";
+            }
+            else
+            {
+                commandLine = $"UPDATE Statistic SET {quizId} = @QuizID, {questionId} = @QuestionID, {userId} = @UserID, {0} = @AnsweredCorrectly";
+            }
             myDataBase.EditSQL(commandLine);
         }
     }

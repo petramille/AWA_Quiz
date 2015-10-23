@@ -15,9 +15,9 @@ namespace AWA_Quiz
         string connectionString = Resources.connectionString;
 
 
-        //Get list from database via view - all quiz info
-        //View was created but difficult to handle same name from different original tables
-        public List<string> ReadFromSQL(string quizTitle)
+       
+        //version taking two parameters - they are not communicated to db!!
+        public List<string> ReadFromSQL(string quizTitle, string commandText)
         {
             myConnection.ConnectionString = connectionString;
             SqlDataReader myReader = null;
@@ -28,7 +28,7 @@ namespace AWA_Quiz
                 myCommand = new SqlCommand();
                 myCommand.Connection = myConnection;
 
-                myCommand.CommandText = "sp_GetQuiz";
+                myCommand.CommandText = commandText;
                 myReader = myCommand.ExecuteReader();
 
                 List<string> mySQLResult = new List<string>();
@@ -66,6 +66,55 @@ namespace AWA_Quiz
             }
         }
 
+        //version taking three parameters, they are not communicated to db!!
+        public List<string> ReadFromSQL(string eMailAddress, string quizTitle, string commandText)
+        {
+            myConnection.ConnectionString = connectionString;
+            SqlDataReader myReader = null;
+
+            try
+            {
+                myConnection.Open();
+                myCommand = new SqlCommand();
+                myCommand.Connection = myConnection;
+
+                myCommand.CommandText = commandText;
+                myReader = myCommand.ExecuteReader();
+
+                List<string> mySQLResult = new List<string>();
+                if (myReader != null)
+                {
+                    while (myReader.Read())
+                    {
+                        for (int i = 0; i < myReader.FieldCount; i++)
+                        {
+                            mySQLResult.Add(myReader[i].ToString());
+                        }
+                    }
+                    return mySQLResult;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            //Catch the exception!!
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                if (myReader != null)
+                {
+                    myReader.Close();
+                }
+                if (myConnection != null)
+                {
+                    myConnection.Close();
+                }
+            }
+        }
 
         //Edit the database via query
         public void EditSQL(string commandLine)
@@ -218,38 +267,9 @@ namespace AWA_Quiz
 
             }
         }
-        public void ReadQuiz(string title)
-        {
-            try
-            {
-                myCommand.Connection = myConnection;
-                myConnection.ConnectionString = connectionString;
-                myConnection.Open();
+       
 
-                //Call sp
-                myCommand.CommandText = "";
-                myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                myCommand.Parameters.Clear();
-
-                //Write parameters to add
-                myCommand.Parameters.Add("@QuizTitle", System.Data.SqlDbType.VarChar, 50);
-                
-
-                myCommand.Parameters["@QuizTitle"].Value = title;
-
-                myCommand.Parameters["@"].Direction = System.Data.ParameterDirection.Output;
-
-                myCommand.ExecuteNonQuery();
-                myConnection.Close();
-
-
-
-            }
-            catch (Exception)
-            {
-
-
-            }
-        }
+        
+        
     }
 }

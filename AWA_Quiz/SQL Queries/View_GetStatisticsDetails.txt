@@ -1,0 +1,4 @@
+﻿SELECT     dbo.Quiz.QuizTitle, dbo.Statistic.QuizID, dbo.Statistic.QuestionID, dbo.Statistic.UserID, dbo.Statistic.AnsweredCorrectly, dbo.[User].MailAddress
+FROM        dbo.[User] INNER JOIN
+                  dbo.Statistic ON dbo.[User].UserID = dbo.Statistic.UserID CROSS JOIN
+                  dbo.Quiz

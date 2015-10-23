@@ -9,14 +9,35 @@ namespace AWA_Quiz
     {
         DatabaseCommunication myDatabase = new DatabaseCommunication();
 
-        private int quizId;
-        private int questionId;
-        private int userId;
-        private bool IsCorrect;
+        
 
-        public void Calculate(User user, Question question, bool isCorrect)
+        //Discuss what to display for statistics
+        public void CalculateUserStatistics(string eMailAddress, string quizTitle)
         {
+            List<string> statistics = myDatabase.ReadFromSQL(eMailAddress, quizTitle, "sp_GetStatistics");
+            List<int> result = new List<int>();
+            for (int i = 0; i < statistics.Count; i++)
+            {
+                if (i % 4 == 0)
+                {
+                    for (int j = 0; j < statistics.Count; j++)
+                    {
+                        
+                        int tempStat;
+                        Int32.TryParse(statistics[i], out tempStat);
+                        result.Add(tempStat);
+                    }
+                }
+            }
 
+            int correctPercentage = result.Sum() / result.Count;
+
+            
+        }
+
+        public void CalculateQuizStatistics(string quizTitle)
+        {
+            List<string> statistics = myDatabase.ReadFromSQL(quizTitle, "");
         }
 
         public void VisualizeStatistics()

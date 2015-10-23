@@ -8,10 +8,24 @@ namespace AWA_Quiz.Controllers
 {
     public class UserController : Controller
     {
+        UserHandling myUserHandling = new UserHandling();
+
         // GET: User
-        public ActionResult Index()
+        public ActionResult Index(string eMailAddress)
         {
-            return View();
+            
+            if (!string.IsNullOrEmpty(eMailAddress))
+            {
+                List<string> user = myUserHandling.ReadUser(eMailAddress);
+
+                return View(user);
+            }
+            else
+            {
+                string status = "Invalid login attempt.";
+                return RedirectToAction("Error", "Quiz", new { error = status });
+            }
+            
         }
 
 

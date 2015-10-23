@@ -197,6 +197,7 @@
     <Compile Include="Student.cs" />
     <Compile Include="Teacher.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserHandling.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -228,6 +229,10 @@
     <Content Include="SQL Queries\sp_AddQuestion.txt" />
     <Content Include="SQL Queries\sp_AddQuiz.txt" />
     <Content Include="SQL Queries\sp_GetQuiz.txt" />
+    <Content Include="SQL Queries\sp_GetStatistics.txt" />
+    <Content Include="SQL Queries\sp_GetUser.txt" />
+    <Content Include="SQL Queries\View_GetAllQuizData.txt" />
+    <Content Include="SQL Queries\View_GetStatisticsDetails.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -1,0 +1,7 @@
+﻿SELECT     dbo.Answer.AnswerDescription, dbo.Answer.AnswerIsCorrectAnswer, dbo.Question.QuestionCreationDate, dbo.Question.QuestionTitle, dbo.Question.QuestionDescription, dbo.Question.QuestionID, dbo.Answer.AnswerID, dbo.Quiz.QuizID, dbo.Quiz.QuizCreationDate, 
+                  dbo.Quiz.QuizTitle, dbo.Quiz.QuizCategory, dbo.Quiz.QuizDescription, dbo.Question.QuestionNrOfCorrectAnswers
+FROM        dbo.Answer INNER JOIN
+                  dbo.QuestionAnswer ON dbo.Answer.AnswerID = dbo.QuestionAnswer.AnswerID INNER JOIN
+                  dbo.QuizQuestion ON dbo.QuestionAnswer.QuestionID = dbo.QuizQuestion.QuestionID CROSS JOIN
+                  dbo.Quiz CROSS JOIN
+                  dbo.Question
