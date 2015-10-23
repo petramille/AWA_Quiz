@@ -16,7 +16,7 @@ namespace AWA_Quiz
 
 
        
-        //version taking two parameters - they are not communicated to db!!
+        //version taking two parameters - parameters not communicated to db!!
         public List<string> ReadFromSQL(string quizTitle, string commandText)
         {
             myConnection.ConnectionString = connectionString;
@@ -66,7 +66,7 @@ namespace AWA_Quiz
             }
         }
 
-        //version taking three parameters, they are not communicated to db!!
+        //version taking three parameters, parameters not communicated to db!!
         public List<string> ReadFromSQL(string eMailAddress, string quizTitle, string commandText)
         {
             myConnection.ConnectionString = connectionString;

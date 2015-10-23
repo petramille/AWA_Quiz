@@ -17,7 +17,7 @@ namespace AWA_Quiz.Controllers
 
         public ActionResult AddTest()
         {
-            //string sessionState = "";
+            
             return View("AddTest");
         }
 

@@ -14,5 +14,7 @@ namespace AWA_Quiz
             List<string> user = myDataBase.ReadFromSQL(eMailAddress, "sp_GetUser");
             return user;
         }
+
+       // Methods to add, delete and remove users are also supposed to be here
     }
 }

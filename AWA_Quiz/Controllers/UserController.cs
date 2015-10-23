@@ -23,7 +23,7 @@ namespace AWA_Quiz.Controllers
             else
             {
                 string status = "Invalid login attempt.";
-                return RedirectToAction("Error", "Quiz", new { error = status });
+                return RedirectToAction("Error", "Shared", new { error = status });
             }
             
         }
