@@ -65,11 +65,11 @@ namespace AWA_Quiz
             string commandLine;
             if (isCorrect)
             {
-                commandLine = $"UPDATE Statistic SET {quizId} = @QuizID, {questionId} = @QuestionID, {userId} = @UserID, {1} = @AnsweredCorrectly";
+                commandLine = $"UPDATE Statistic SET {quizId} = @QuizID, {questionId} = @QuestionID, {userId} = @UserID, 1 = @AnsweredCorrectly";
             }
             else
             {
-                commandLine = $"UPDATE Statistic SET {quizId} = @QuizID, {questionId} = @QuestionID, {userId} = @UserID, {0} = @AnsweredCorrectly";
+                commandLine = $"UPDATE Statistic SET {quizId} = @QuizID, {questionId} = @QuestionID, {userId} = @UserID, 0 = @AnsweredCorrectly";
             }
             myDataBase.EditSQL(commandLine);
         }
