@@ -231,6 +231,7 @@
     <Content Include="SQL Queries\sp_GetQuiz.txt" />
     <Content Include="SQL Queries\sp_GetStatistics.txt" />
     <Content Include="SQL Queries\sp_GetUser.txt" />
+    <Content Include="SQL Queries\Triggers.txt" />
     <Content Include="SQL Queries\View_GetAllQuizData.txt" />
     <Content Include="SQL Queries\View_GetStatisticsDetails.txt" />
     <Content Include="Web.config" />

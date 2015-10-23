@@ -1,0 +1,15 @@
+﻿CREATE TRIGGER Trigger_DeleteFromQuizQuestion on dbo.QuizQuestion
+AFTER DELETE
+AS
+    DELETE FROM dbo.Question
+    WHERE QuestionID = QuestionID
+GO
+
+CREATE TRIGGER Trigger_DeleteFromQuestionAnswer on dbo.QuestionAnswer
+AFTER DELETE
+AS
+    DELETE FROM dbo.QuestionAnswer
+    WHERE QuestionID = QuestionID
+GO
+
+No query to remove from Answer Table!!

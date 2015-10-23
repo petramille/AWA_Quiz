@@ -61,11 +61,20 @@ namespace AWA_Quiz.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data Source=localhost\SQLEXPRESS;Initial Catalog=Contacts;Integrated Security=SSPI.
+        ///   Looks up a localized string similar to @&quot;Data Source=localhost\SQLEXPRESS;Initial Catalog=Contacts;Integrated Security=SSPI&quot;.
         /// </summary>
         internal static string connectionString {
             get {
                 return ResourceManager.GetString("connectionString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

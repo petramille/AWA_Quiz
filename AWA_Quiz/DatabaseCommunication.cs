@@ -186,6 +186,14 @@ namespace AWA_Quiz
 
                 return 0;
             }
+            finally
+            {
+                
+                if (myConnection != null)
+                {
+                    myConnection.Close();
+                }
+            }
         }
 
 
@@ -227,6 +235,14 @@ namespace AWA_Quiz
 
                 return 0;
             }
+            finally
+            {
+                
+                if (myConnection != null)
+                {
+                    myConnection.Close();
+                }
+            }
         }
 
         public void AddAnswer(Answer answer, int questionId)
@@ -261,10 +277,19 @@ namespace AWA_Quiz
                 myConnection.Close();
 
             }
+            //catch exception
             catch (Exception)
             {
 
 
+            }
+            finally
+            {
+                
+                if (myConnection != null)
+                {
+                    myConnection.Close();
+                }
             }
         }
        
