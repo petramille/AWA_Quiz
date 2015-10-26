@@ -16,7 +16,6 @@ namespace DatabaseCommunication
         string connectionString = Resources.connectionString;
 
 
-
         //version taking two parameters 
         public List<string> ReadFromSQL(string quizTitle, string commandText)
         {

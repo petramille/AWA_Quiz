@@ -64,18 +64,29 @@ namespace AWA_Quiz.Controllers
             return RedirectToAction("AddQuestion");
         }
 
+
         public ActionResult DeleteTest()
         {
-           
-
-
             return View("DeleteTest");
         }
 
+
+
+        //Find a way to distinguish between quiz or question
         [HttpPost]
-        public ActionResult DeleteTest(string number)
+        public ActionResult DeleteTest(int id, string quizOrQuestion)
         {
-            return RedirectToAction("DeleteTest", number);
+            if (quizOrQuestion == "question")
+            {
+            myQuizHandling.DeleteQuestion(id);
+                return View();
+            }
+            else if (quizOrQuestion == "quiz")
+            {
+                myQuizHandling.DeleteQuiz(id);
+                return View();
+            }
+            return RedirectToAction("DeleteTest");
         }
 
 
@@ -83,31 +94,29 @@ namespace AWA_Quiz.Controllers
         public ActionResult EditTest()
         {
             
-
-
             return View("EditTest");
         }
 
 
 
         [HttpPost]
-        public ActionResult EditTest(string number)
+        public ActionResult EditTest(string title, string description, int nrOfCorrectAnswers)
         {
-            return RedirectToAction("EditTest", number);
+            return RedirectToAction("EditTest");
         }
+
 
         public ActionResult StartTest()
         {
-
             return View("StartTest");
         }
 
 
 
         [HttpPost]
-        public ActionResult StartTest(string number)
+        public ActionResult StartTest(string test)
         {
-            return RedirectToAction("StartTest", number);
+            return RedirectToAction("StartTest");
         }
 
 

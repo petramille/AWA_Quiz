@@ -60,6 +60,12 @@ namespace BI
             myDataBase.EditSQL(commandLine);
         }
 
+        public void DeleteQuiz(int quizId)
+        {
+            string commandLine = $"DELETE FROM Quiz WHERE {quizId} = @QuizId";
+            myDataBase.EditSQL(commandLine);
+        }
+
 
         //Check the queries
         public void UpdateStatistics(int quizId, int questionId, int userId, bool isCorrect)
