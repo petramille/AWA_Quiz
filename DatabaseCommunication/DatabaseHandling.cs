@@ -17,7 +17,7 @@ namespace DatabaseCommunication
 
 
 
-        //version taking two parameters - parameters not communicated to db!!
+        //version taking two parameters 
         public List<string> ReadFromSQL(string quizTitle, string commandText)
         {
             myConnection.ConnectionString = connectionString;
@@ -30,6 +30,11 @@ namespace DatabaseCommunication
                 myCommand.Connection = myConnection;
 
                 myCommand.CommandText = commandText;
+                myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                myCommand.Parameters.Clear();
+
+                myCommand.Parameters.Add("@QuizTitle", System.Data.SqlDbType.VarChar, 50);
+                myCommand.Parameters["@QuizTitle"].Value = quizTitle;
                 myReader = myCommand.ExecuteReader();
 
                 List<string> mySQLResult = new List<string>();
@@ -80,6 +85,11 @@ namespace DatabaseCommunication
                 myCommand.Connection = myConnection;
 
                 myCommand.CommandText = commandText;
+                myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                myCommand.Parameters.Clear();
+
+                myCommand.Parameters.Add("@MailAddress", System.Data.SqlDbType.VarChar, 50);
+                myCommand.Parameters["@MailAddress"].Value = eMailAddress;
                 myReader = myCommand.ExecuteReader();
 
                 List<string> mySQLResult = new List<string>();

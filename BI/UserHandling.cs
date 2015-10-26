@@ -11,11 +11,26 @@ namespace BI
     {
         DatabaseHandling myDataBase = new DatabaseHandling();
 
-        public List<string> ReadUser(string eMailAddress)
+
+        public List<string> LogIn(string eMail, string password)
         {
-            List<string> user = myDataBase.ReadFromSQL(eMailAddress, "sp_GetUser");
-            return user;
+            List<string> tmpUser = new List<string>();
+            tmpUser = myDataBase.ReadFromSQL(eMail, password, "sp_GetUser");
+
+            List<string> tmpList = new List<string>();
+            if (tmpUser == null)
+            {
+                tmpList.Add("No access to the database at the moment");
+            }
+
+            else
+            {
+                tmpList = tmpUser;
+            }
+            return tmpList;
         }
+
+        
 
         // Methods to add, delete and remove users are also supposed to be here
     }

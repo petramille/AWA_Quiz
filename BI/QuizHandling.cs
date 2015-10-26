@@ -21,12 +21,12 @@ namespace BI
             return quizId;
         }
 
-        public void CreateQuestion(int quizId, string title, string description, int numberOfCorrectAnswers, List<Answer> answerList)
+        public int CreateQuestion(int quizId, string title, string description, int numberOfCorrectAnswers)
         {
             DateTime creationDate = DateTime.Now;
-            Question newQuestion = new Question(title, description, creationDate, numberOfCorrectAnswers, answerList);
+            //Question newQuestion = new Question(title, description, creationDate, numberOfCorrectAnswers, answerList);
             int questionId = myDataBase.AddQuestion(title, description, creationDate, numberOfCorrectAnswers, quizId);
-
+            return questionId;
         }
 
         public void CreateAnswer(int questionId, string answerText, bool isCorrect)

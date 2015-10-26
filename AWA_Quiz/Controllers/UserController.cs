@@ -12,12 +12,12 @@ namespace AWA_Quiz.Controllers
         UserHandling myUserHandling = new UserHandling();
 
         // GET: User
-        public ActionResult Index(string eMailAddress)
+        public ActionResult Index(string eMailAddress, string password)
         {
             
-            if (!string.IsNullOrEmpty(eMailAddress))
+            if (!string.IsNullOrEmpty(eMailAddress) && !string.IsNullOrEmpty(password))
             {
-                List<string> user = myUserHandling.ReadUser(eMailAddress);
+                List<string> user = myUserHandling.LogIn(eMailAddress, password);
 
                 return View(user);
             }

@@ -24,33 +24,49 @@ namespace AWA_Quiz.Controllers
 
         public ActionResult AddTest()
         {
-            
+
             return View("AddTest");
         }
 
         [HttpPost]
-        public ActionResult AddTest(string number)
+        public ActionResult AddTest(string title, string description, string category)
         {
-            return RedirectToAction("AddTest", number);
+            if (!string.IsNullOrEmpty(title))
+            {
+                int quizId = myQuizHandling.CreateQuiz(title, description, category);
+                Session["quizId"] = quizId;
+                return View();
+            }
+            else
+            {
+
+                return RedirectToAction("AddTest");
+            }
         }
 
         public ActionResult AddQuestion()
         {
-            QuizHandling myQuizHandling = new QuizHandling();
-
-
             return View("AddQuestion");
         }
 
+
+
         [HttpPost]
-        public ActionResult AddQuestion(string number)
+        public ActionResult AddQuestion(string title, string description, int nrOfCorrectAnswers)
         {
-            return RedirectToAction("AddQuestion", number);
+            if (!string.IsNullOrEmpty(title))
+            {
+                int quizId = (int)Session["quizId"];
+                int questionId = myQuizHandling.CreateQuestion(quizId, title, description, nrOfCorrectAnswers);
+                return View();
+            }
+            else
+            return RedirectToAction("AddQuestion");
         }
 
         public ActionResult DeleteTest()
         {
-            QuizHandling myQuizHandling = new QuizHandling();
+           
 
 
             return View("DeleteTest");
@@ -62,13 +78,17 @@ namespace AWA_Quiz.Controllers
             return RedirectToAction("DeleteTest", number);
         }
 
+
+
         public ActionResult EditTest()
         {
-            QuizHandling myQuizHandling = new QuizHandling();
+            
 
 
             return View("EditTest");
         }
+
+
 
         [HttpPost]
         public ActionResult EditTest(string number)
@@ -78,7 +98,7 @@ namespace AWA_Quiz.Controllers
 
         public ActionResult StartTest()
         {
-            
+
             return View("StartTest");
         }
 
@@ -90,11 +110,15 @@ namespace AWA_Quiz.Controllers
             return RedirectToAction("StartTest", number);
         }
 
+
+
         public ActionResult ViewResult()
         {
-            
+
+
             return View("ViewResults");
         }
+
 
         [HttpPost]
         public ActionResult ViewResult(string number)
