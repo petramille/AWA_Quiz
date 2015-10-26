@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
+using DatabaseCommunication;
 
-namespace AWA_Quiz
+namespace BI
 {
     public class UserHandling
     {
-        DatabaseCommunication myDataBase = new DatabaseCommunication();
+        DatabaseHandling myDataBase = new DatabaseHandling();
 
         public List<string> ReadUser(string eMailAddress)
         {
@@ -15,6 +17,6 @@ namespace AWA_Quiz
             return user;
         }
 
-       // Methods to add, delete and remove users are also supposed to be here
+        // Methods to add, delete and remove users are also supposed to be here
     }
 }

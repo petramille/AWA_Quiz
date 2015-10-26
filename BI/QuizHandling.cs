@@ -1,23 +1,23 @@
-﻿using AWA_Quiz.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Text;
+using System.Threading.Tasks;
+using DatabaseCommunication;
 
-namespace AWA_Quiz
+
+namespace BI
 {
     public class QuizHandling
     {
-        DatabaseCommunication myDataBase = new DatabaseCommunication();
+        DatabaseHandling myDataBase = new DatabaseHandling();
 
 
         public int CreateQuiz(string title, string description, string category)
         {
             DateTime creationDate = DateTime.Now;
             Quiz newQuiz = new Quiz(title, description, category, creationDate);
-            int quizId = myDataBase.AddQuiz(newQuiz);
+            int quizId = myDataBase.AddQuiz(title, description, category, creationDate);
             return quizId;
         }
 
@@ -25,14 +25,14 @@ namespace AWA_Quiz
         {
             DateTime creationDate = DateTime.Now;
             Question newQuestion = new Question(title, description, creationDate, numberOfCorrectAnswers, answerList);
-            int questionId = myDataBase.AddQuestion(newQuestion, quizId);
-            
+            int questionId = myDataBase.AddQuestion(title, description, creationDate, numberOfCorrectAnswers, quizId);
+
         }
 
         public void CreateAnswer(int questionId, string answerText, bool isCorrect)
         {
             Answer newAnswer = new Answer(answerText, isCorrect);
-            myDataBase.AddAnswer(newAnswer, questionId);
+            myDataBase.AddAnswer(answerText, isCorrect, questionId);
         }
 
         //How to choose what quiz to display, id or title? use a view to get all quiz info?
@@ -56,10 +56,12 @@ namespace AWA_Quiz
         //Trigger delete from intermediate tables and Answer table???? Now only the question is deleted
         public void DeleteQuestion(int questionId)
         {
-            string commandLine = $"DELETE FROM Question WHERE {questionId} = @QuestionId"; 
+            string commandLine = $"DELETE FROM Question WHERE {questionId} = @QuestionId";
             myDataBase.EditSQL(commandLine);
         }
 
+
+        //Check the queries
         public void UpdateStatistics(int quizId, int questionId, int userId, bool isCorrect)
         {
             string commandLine;

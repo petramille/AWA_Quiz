@@ -162,8 +162,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin.cs" />
-    <Compile Include="Answer.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -174,7 +172,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="DatabaseCommunication.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -189,15 +186,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Question.cs" />
-    <Compile Include="Quiz.cs" />
-    <Compile Include="QuizHandling.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Statistics.cs" />
-    <Compile Include="Student.cs" />
-    <Compile Include="Teacher.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="UserHandling.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -223,17 +212,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="SQL Queries\AddTestData.txt" />
-    <Content Include="SQL Queries\CreateDatabase.txt" />
-    <Content Include="SQL Queries\sp_AddAnswer.txt" />
-    <Content Include="SQL Queries\sp_AddQuestion.txt" />
-    <Content Include="SQL Queries\sp_AddQuiz.txt" />
-    <Content Include="SQL Queries\sp_GetQuiz.txt" />
-    <Content Include="SQL Queries\sp_GetStatistics.txt" />
-    <Content Include="SQL Queries\sp_GetUser.txt" />
-    <Content Include="SQL Queries\Triggers.txt" />
-    <Content Include="SQL Queries\View_GetAllQuizData.txt" />
-    <Content Include="SQL Queries\View_GetStatisticsDetails.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -291,6 +269,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BI\BI.csproj">
+      <Project>{1c462a7f-c735-45ca-bd7b-bfa2a8a9bb3a}</Project>
+      <Name>BI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseCommunication\DatabaseCommunication.csproj">
+      <Project>{23396b42-90b4-449e-a58d-c76a9fd26e25}</Project>
+      <Name>DatabaseCommunication</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

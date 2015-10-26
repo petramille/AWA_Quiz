@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace AWA_Quiz
+namespace BI
 {
     public class User
     {
@@ -17,7 +18,7 @@ namespace AWA_Quiz
 
         public User(string firstName, string lastName, string userName, string password, string eMailAddress, string role)
         {
-            
+
             FirstName = firstName;
             LastName = lastName;
             UserName = userName;

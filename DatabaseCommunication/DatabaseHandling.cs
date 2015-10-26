@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
-using AWA_Quiz.Properties;
+using System.Text;
+using System.Threading.Tasks;
+using DatabaseCommunication.Properties;
 
-namespace AWA_Quiz
+namespace DatabaseCommunication
 {
-    public class DatabaseCommunication
+    public class DatabaseHandling
     {
         SqlConnection myConnection = new SqlConnection();
         SqlCommand myCommand = new SqlCommand();
@@ -15,7 +16,7 @@ namespace AWA_Quiz
         string connectionString = Resources.connectionString;
 
 
-       
+
         //version taking two parameters - parameters not communicated to db!!
         public List<string> ReadFromSQL(string quizTitle, string commandText)
         {
@@ -149,7 +150,7 @@ namespace AWA_Quiz
             }
         }
 
-        public int AddQuiz(Quiz quiz)
+        public int AddQuiz(string quizTitle, string quizDescription, string quizCategory, DateTime quizCreationDate)
         {
             try
             {
@@ -166,10 +167,10 @@ namespace AWA_Quiz
                 myCommand.Parameters.Add("@QuizCategory", System.Data.SqlDbType.VarChar, 50);
                 myCommand.Parameters.Add("@QuizCreationDate", System.Data.SqlDbType.Date);
 
-                myCommand.Parameters["@QuizTitle"].Value = quiz.Title;
-                myCommand.Parameters["@QuizDescription"].Value = quiz.Description;
-                myCommand.Parameters["@QuizCategory"].Value = quiz.Category;
-                myCommand.Parameters["@QuizCreationDate"].Value = quiz.CreationDate;
+                myCommand.Parameters["@QuizTitle"].Value = quizTitle;
+                myCommand.Parameters["@QuizDescription"].Value = quizDescription;
+                myCommand.Parameters["@QuizCategory"].Value = quizCategory;
+                myCommand.Parameters["@QuizCreationDate"].Value = quizCreationDate;
 
 
                 myCommand.Parameters["@QuizId"].Direction = System.Data.ParameterDirection.Output;
@@ -188,7 +189,7 @@ namespace AWA_Quiz
             }
             finally
             {
-                
+
                 if (myConnection != null)
                 {
                     myConnection.Close();
@@ -197,7 +198,7 @@ namespace AWA_Quiz
         }
 
 
-        public int AddQuestion(Question question, int quizId)
+        public int AddQuestion(string questionTitle, string questionDescription, DateTime questionCreationDate, int questionNrOfCorrectAnswers, int quizId)
         {
             try
             {
@@ -216,10 +217,10 @@ namespace AWA_Quiz
                 myCommand.Parameters.Add("@QuestionNrOfCorrectAnswers", System.Data.SqlDbType.Int);
 
                 myCommand.Parameters["@QuizID"].Value = quizId;
-                myCommand.Parameters["@QuestionTitle"].Value = question.Title;
-                myCommand.Parameters["@QuestionDescription"].Value = question.Description;
-                myCommand.Parameters["@QuestionCreationDate"].Value = question.CreationDate;
-                myCommand.Parameters["@QuestionNrOfCorrectAnswers"].Value = question.NumberOfCorrectAnswers;
+                myCommand.Parameters["@QuestionTitle"].Value = questionTitle;
+                myCommand.Parameters["@QuestionDescription"].Value = questionDescription;
+                myCommand.Parameters["@QuestionCreationDate"].Value = questionCreationDate;
+                myCommand.Parameters["@QuestionNrOfCorrectAnswers"].Value = questionNrOfCorrectAnswers;
 
                 myCommand.Parameters["@QuestionId"].Direction = System.Data.ParameterDirection.Output;
 
@@ -237,7 +238,7 @@ namespace AWA_Quiz
             }
             finally
             {
-                
+
                 if (myConnection != null)
                 {
                     myConnection.Close();
@@ -245,7 +246,7 @@ namespace AWA_Quiz
             }
         }
 
-        public void AddAnswer(Answer answer, int questionId)
+        public void AddAnswer(string answerDescription, bool answerCorrect, int questionId)
         {
             try
             {
@@ -263,8 +264,8 @@ namespace AWA_Quiz
 
 
                 myCommand.Parameters["@QuestionID"].Value = questionId;
-                myCommand.Parameters["@AnswerDescription"].Value = answer.AnswerText;
-                if (answer.IsCorrect)
+                myCommand.Parameters["@AnswerDescription"].Value = answerDescription;
+                if (answerCorrect)
                 {
                     myCommand.Parameters["@AnswerIsCorrectAnswer"].Value = 1;
                 }
@@ -285,16 +286,17 @@ namespace AWA_Quiz
             }
             finally
             {
-                
+
                 if (myConnection != null)
                 {
                     myConnection.Close();
                 }
             }
         }
-       
 
-        
-        
+
+
+
     }
 }
+

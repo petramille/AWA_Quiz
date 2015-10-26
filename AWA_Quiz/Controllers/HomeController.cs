@@ -28,5 +28,10 @@ namespace AWA_Quiz.Controllers
 
             return View();
         }
+
+        public ActionResult Done()
+        {
+            return View();
+        }
     }
 }

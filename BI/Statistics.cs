@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
+using DatabaseCommunication;
 
-namespace AWA_Quiz
+namespace BI
 {
     public class Statistics
     {
-        DatabaseCommunication myDatabase = new DatabaseCommunication();
+        DatabaseHandling myDatabase = new DatabaseHandling();
 
-        
+
 
         //Discuss what to display for statistics
         public void CalculateUserStatistics(string eMailAddress, string quizTitle)
@@ -22,7 +24,7 @@ namespace AWA_Quiz
                 {
                     for (int j = 0; j < statistics.Count; j++)
                     {
-                        
+
                         int tempStat;
                         Int32.TryParse(statistics[i], out tempStat);
                         result.Add(tempStat);
@@ -32,7 +34,7 @@ namespace AWA_Quiz
 
             int correctPercentage = result.Sum() / result.Count;
 
-            
+
         }
 
         public void CalculateQuizStatistics(string quizTitle)
