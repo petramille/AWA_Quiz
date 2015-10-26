@@ -1,0 +1,28 @@
+﻿@model AWA_Quiz.Models.QuizViewModel
+
+@{
+    ViewBag.Title = "EditTest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Edit test</h4>
+<p>Choose test or question to edit</p>
+
+
+<div class="form-group">
+    @using (Html.BeginForm("AddQuestion", "Quiz", FormMethod.Post))
+    {
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Choose" class="btn btn-default" />
+        </div>
+    }
+</div>
+
+<div class="form-group">
+    @using (Html.BeginForm("Index", "Quiz", FormMethod.Post))
+    {
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Cancel" class="btn btn-default" />
+        </div>
+    }
+</div>

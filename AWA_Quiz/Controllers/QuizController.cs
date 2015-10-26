@@ -9,6 +9,10 @@ namespace AWA_Quiz.Controllers
 {
     public class QuizController : Controller
     {
+
+        QuizHandling myQuizHandling = new QuizHandling();
+
+
         // GET: Quiz
         [Authorize]
         public ActionResult Index()
@@ -16,11 +20,11 @@ namespace AWA_Quiz.Controllers
             return View();
         }
 
+
+
         public ActionResult AddTest()
         {
-            QuizHandling myQuizHandling = new QuizHandling();
             
-               
             return View("AddTest");
         }
 
@@ -30,13 +34,55 @@ namespace AWA_Quiz.Controllers
             return RedirectToAction("AddTest", number);
         }
 
+        public ActionResult AddQuestion()
+        {
+            QuizHandling myQuizHandling = new QuizHandling();
 
+
+            return View("AddQuestion");
+        }
+
+        [HttpPost]
+        public ActionResult AddQuestion(string number)
+        {
+            return RedirectToAction("AddQuestion", number);
+        }
+
+        public ActionResult DeleteTest()
+        {
+            QuizHandling myQuizHandling = new QuizHandling();
+
+
+            return View("DeleteTest");
+        }
+
+        [HttpPost]
+        public ActionResult DeleteTest(string number)
+        {
+            return RedirectToAction("DeleteTest", number);
+        }
+
+        public ActionResult EditTest()
+        {
+            QuizHandling myQuizHandling = new QuizHandling();
+
+
+            return View("EditTest");
+        }
+
+        [HttpPost]
+        public ActionResult EditTest(string number)
+        {
+            return RedirectToAction("EditTest", number);
+        }
 
         public ActionResult StartTest()
         {
             
             return View("StartTest");
         }
+
+
 
         [HttpPost]
         public ActionResult StartTest(string number)

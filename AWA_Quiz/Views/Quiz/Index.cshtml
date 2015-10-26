@@ -16,13 +16,17 @@
 <p>Choose how to proceed by clicking one of the buttons below</p>
 
 <div>
+    <p>Test modifications</p>
     @Html.ActionLink("Add Test", "AddTest", "Quiz", new { @class = "btn btn-default" })
-    @Html.ActionLink("Add User", "AddUser", "User", new { @class = "btn btn-default" })
+    @Html.ActionLink("Delete Test", "AddTest", "Quiz", new { @class = "btn btn-default" })
+    @Html.ActionLink("Edit Test", "AddTest", "Quiz", new { @class = "btn btn-default" })
+    <p>User modifications</p>
+    @Html.ActionLink("Edit User", "AddUser", "User", new { @class = "btn btn-default" })
     @Html.ActionLink("Start Quiz", "StartTest", "Quiz", new { @class = "btn btn-default" })
     @Html.ActionLink("View Statistics", "ViewHistory", "Quiz", new { @class = "btn btn-default" })
 
 </div>
 <p>Area for tests and reviews not taken?</p>
 <br/>
-<p>Area for the lastest statistics?</p>
+<p>Area for the statistics?</p>
 

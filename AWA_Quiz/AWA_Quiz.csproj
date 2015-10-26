@@ -252,6 +252,9 @@
     <Content Include="Views\Quiz\StartTest.cshtml" />
     <Content Include="Views\Quiz\ViewResults.cshtml" />
     <Content Include="Views\User.cshtml" />
+    <Content Include="Views\Quiz\AddQuestion.cshtml" />
+    <Content Include="Views\Quiz\DeleteTest.cshtml" />
+    <Content Include="Views\Quiz\EditTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

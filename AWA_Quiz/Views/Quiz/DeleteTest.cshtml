@@ -1,0 +1,29 @@
+﻿@model AWA_Quiz.Models.QuizViewModel
+
+@{
+    ViewBag.Title = "DeleteTest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Delete test</h4>
+
+<p>Choose test or question to delete</p>
+
+<div class="form-group">
+    @using (Html.BeginForm("Index", "Quiz", FormMethod.Post))
+    {
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Delete" class="btn btn-default" />
+        </div>
+    }
+</div>
+
+
+<div class="form-group">
+    @using (Html.BeginForm("Index", "Quiz", FormMethod.Post))
+    {
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Cancel" class="btn btn-default" />
+        </div>
+    }
+</div>

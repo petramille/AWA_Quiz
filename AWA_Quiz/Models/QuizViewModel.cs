@@ -10,23 +10,31 @@ namespace AWA_Quiz.Models
 {
     public class QuizViewModel
     {
-        //public int Id { get; set; }
-        [DisplayName("Category")]
+        //Properties related to the quiz
+        [DisplayName("Title")]
         [Required]
-        //[RegularExpression(@"^[a-zA-Z0-9u+2423]{2,20}$", ErrorMessage = "")]
-        public string Category { get; set; }
+        [MaxLength(50, ErrorMessage = "The title is too long")]
+        public string QuizTitle { get; set; }
+
+        [DisplayName("Description")]
+        public string QuizDescription { get; set; }
+
+        [DisplayName("Category")]
+        public string QuizCategory { get; set; }
+
+
 
         [DisplayName("Question")]
         [Required]
         [DataTypeAttribute(DataType.MultilineText)]
         //[RegularExpression(@"^[a-zA-Z0-9u+2423]{2,20}$", ErrorMessage = "")]
-        public string Title { get; set; }
+        public string QuestionTitle { get; set; }
 
         [DisplayName("Further description")]
         [Required]
         [DataTypeAttribute(DataType.MultilineText)]
         //[RegularExpression(@"^[a-zA-Z0-9u+2423]{2,20}$", ErrorMessage = "")]
-        public string Description { get; set; }
+        public string QuestionDescription { get; set; }
         
 
         public int NumberOfCorrectAnswers { get; set; }
