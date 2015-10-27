@@ -41,29 +41,30 @@
        
     </div>
 }
-<div class="form-group">
-    @using (Html.BeginForm("AddQuestion", "Quiz", FormMethod.Post))
-    {
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save and start adding questions" class="btn btn-default" />
-        </div>
-    }
-</div>
 
-<div class="form-group">
-    @using (Html.BeginForm("Index", "Quiz", FormMethod.Post))
-    {
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save and finish" class="btn btn-default" />
-        </div>
-    }
-</div>
+    <div class="form-group">
+        @using (Html.BeginForm("AddQuestion", "Quiz", FormMethod.Post))
+        {
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save and start adding questions" class="btn btn-default" />
+            </div>
+        }
+    </div>
 
-<div class="form-group">
-    @using (Html.BeginForm("Index", "Quiz", FormMethod.Post))
-    {
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Cancel" class="btn btn-default" />
-        </div>
-    }
-</div>
+    <div class="form-group">
+        @using (Html.BeginForm("Index", "Quiz", FormMethod.Post))
+        {
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save and finish" class="btn btn-default" />
+            </div>
+        }
+    </div>
+
+    <div class="form-group">
+        @using (Html.BeginForm("Index", "Quiz", FormMethod.Post))
+        {
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Cancel" class="btn btn-default" />
+            </div>
+        }
+    </div>

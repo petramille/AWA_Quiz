@@ -27,13 +27,14 @@ namespace AWA_Quiz.Models
 
         [DisplayName("Password")]
         [Required]
+        [DataType(DataType.Password)]
         [MinLength(5, ErrorMessage = "The length of the password must be at least 5 characters")]
         public string Password { get; set; }
 
         [DisplayName("E-mail")]
         [Required]
-        [RegularExpression(@"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*@((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$", ErrorMessage = "The e-mail address is not valid")]
-        public string EMailAddress { get; set; }
+        [DataType(DataType.EmailAddress)]
+        public string EmailAddress { get; set; }
 
         public string Role { get; set; }
     }

@@ -30,7 +30,7 @@ namespace AWA_Quiz.Models
         //[RegularExpression(@"^[a-zA-Z0-9u+2423]{2,20}$", ErrorMessage = "")]
         public string QuestionTitle { get; set; }
 
-        [DisplayName("Further description")]
+        [DisplayName("Further question description")]
         [Required]
         [DataTypeAttribute(DataType.MultilineText)]
         //[RegularExpression(@"^[a-zA-Z0-9u+2423]{2,20}$", ErrorMessage = "")]

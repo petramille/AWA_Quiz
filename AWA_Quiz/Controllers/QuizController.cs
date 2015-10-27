@@ -57,7 +57,7 @@ namespace AWA_Quiz.Controllers
             if (!string.IsNullOrEmpty(title))
             {
                 int quizId = (int)Session["quizId"];
-                int questionId = myQuizHandling.CreateQuestion(quizId, title, description, nrOfCorrectAnswers);
+               int questionId = myQuizHandling.CreateQuestion(quizId, title, description, nrOfCorrectAnswers);
                 return View();
             }
             else

@@ -17,14 +17,17 @@
 
 <div>
     <p>Test modifications</p>
-    @Html.ActionLink("Add Test", "AddTest", "Quiz", new { @class = "btn btn-default" })
-    @Html.ActionLink("Delete Test", "AddTest", "Quiz", new { @class = "btn btn-default" })
-    @Html.ActionLink("Edit Test", "AddTest", "Quiz", new { @class = "btn btn-default" })
+    <td>
+        @Html.ActionLink("Add Test", "AddTest", "Quiz", new { @class = "btn btn-default" })
+        @Html.ActionLink("Delete Test", "AddTest", "Quiz", new { @class = "btn btn-default" })
+        @Html.ActionLink("Edit Test", "AddTest", "Quiz", new { @class = "btn btn-default" })
+    </td>
     <p>User modifications</p>
     @Html.ActionLink("Edit User", "AddUser", "User", new { @class = "btn btn-default" })
-    @Html.ActionLink("Start Quiz", "StartTest", "Quiz", new { @class = "btn btn-default" })
-    @Html.ActionLink("View Statistics", "ViewHistory", "Quiz", new { @class = "btn btn-default" })
-
+    <td>
+        @Html.ActionLink("Start Quiz", "StartTest", "Quiz", new { @class = "btn btn-default" })
+        @Html.ActionLink("View Statistics", "ViewHistory", "Quiz", new { @class = "btn btn-default" })
+    </td>
 </div>
 <p>Area for tests and reviews not taken?</p>
 <br/>
