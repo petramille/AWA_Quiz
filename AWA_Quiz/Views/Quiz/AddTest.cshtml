@@ -4,11 +4,12 @@
     ViewBag.Title = "AddTest";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="jumbotron">
+   
 
-<h4>Add test</h4>
+    <p>Add test details to make a new test</p>
 
-<p>Add test details to make a new test</p>
-
+</div>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

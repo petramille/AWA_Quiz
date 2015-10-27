@@ -15,6 +15,110 @@ namespace DatabaseCommunication
 
         string connectionString = Resources.connectionString;
 
+        public List<string> LogInSQL(string eMailAddress, string password, string commandText)
+        {
+            myConnection.ConnectionString = connectionString;
+            SqlDataReader myReader = null;
+
+            try
+            {
+                myConnection.Open();
+                myCommand = new SqlCommand();
+                myCommand.Connection = myConnection;
+
+                myCommand.CommandText = commandText;
+                myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                myCommand.Parameters.Clear();
+
+                myCommand.Parameters.Add("@MailAddress", System.Data.SqlDbType.VarChar, 50);
+                myCommand.Parameters["@MailAddress"].Value = eMailAddress;
+                myCommand.Parameters.Add("@Password", System.Data.SqlDbType.VarChar, 50);
+                myCommand.Parameters["@Password"].Value = password;
+                myReader = myCommand.ExecuteReader();
+
+                List<string> mySQLResult = new List<string>();
+                if (myReader != null)
+                {
+                    while (myReader.Read())
+                    {
+                        for (int i = 0; i < myReader.FieldCount; i++)
+                        {
+                            mySQLResult.Add(myReader[i].ToString());
+                        }
+                    }
+                    return mySQLResult;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            //Catch the exception!!
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                if (myReader != null)
+                {
+                    myReader.Close();
+                }
+                if (myConnection != null)
+                {
+                    myConnection.Close();
+                }
+            }
+        }
+
+        public List<string> ReadAllTestsSQL(string commandText)
+        {
+            myConnection.ConnectionString = connectionString;
+            SqlDataReader myReader = null;
+
+            try
+            {
+                myConnection.Open();
+                myCommand = new SqlCommand();
+                myCommand.Connection = myConnection;
+
+                myCommand.CommandText = commandText;
+                myReader = myCommand.ExecuteReader();
+
+                List<string> mySQLResult = new List<string>();
+                if (myReader != null)
+                {
+                    while (myReader.Read())
+                    {
+                        for (int i = 0; i < myReader.FieldCount; i++)
+                        {
+                            mySQLResult.Add(myReader[i].ToString());
+                        }
+                    }
+                    return mySQLResult;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            //Catch the exception!!
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                if (myReader != null)
+                {
+                    myReader.Close();
+                }
+                if (myConnection != null)
+                {
+                    myConnection.Close();
+                }
+            }
+        }
 
         //version taking two parameters 
         public List<string> ReadFromSQL(string quizTitle, string commandText)

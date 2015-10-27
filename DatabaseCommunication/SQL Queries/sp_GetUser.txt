@@ -19,7 +19,8 @@ GO
 -- Description:	<Description,,>
 -- =============================================
 CREATE PROCEDURE [dbo].[sp_GetUser]
-@MailAddress varchar(100)
+@MailAddress varchar(50),
+@Password varchar(50)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -27,7 +28,7 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT FirstName, LastName, UserName, [Password], [Role] FROM [User] WHERE MailAddress = @MailAddress
+	SELECT FirstName, LastName, UserName, [Role] FROM [User] WHERE MailAddress = @MailAddress AND Password = @Password
 
 	SET NOCOUNT OFF
 END

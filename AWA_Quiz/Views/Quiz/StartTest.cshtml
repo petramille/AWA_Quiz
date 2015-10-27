@@ -5,36 +5,38 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h4>Question x</h4>
+<div class="jumbotron">
+    <h4>Question x</h4>
+</div>
 
 @using (Html.BeginForm())
 {
     <div>
-        @Html.TextBoxFor(model => model.Title, new { })
+        @Html.TextBoxFor(model => model.QuestionTitle, new { })
     </div>
 
-    <div>
-        @Html.TextBoxFor(model => model.Description, new { })
-    </div>
+        <div>
+            @Html.TextBoxFor(model => model.QuestionDescription, new { })
+        </div>
 
-    <div>
-        @Html.TextBoxFor(model => model.AnswerText, new { })
-    </div>
+        <div>
+            @Html.TextBoxFor(model => model.AnswerText, new { })
+        </div>
 
-    <div class="form-group">
-        @using (Html.BeginForm("StartTest", "Quiz", FormMethod.Post))
-        {
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Next" class="btn btn-default" />
-            </div>
-        }
-    </div>
-    <div class="form-group">
-        @using (Html.BeginForm("Index", "Quiz", FormMethod.Post))
-        {
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Cancel" class="btn btn-default" />
-            </div>
-        }
-    </div>
+        <div class="form-group">
+            @using (Html.BeginForm("StartTest", "Quiz", FormMethod.Post))
+            {
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Next" class="btn btn-default" />
+                </div>
+            }
+        </div>
+        <div class="form-group">
+            @using (Html.BeginForm("Index", "Quiz", FormMethod.Post))
+            {
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Cancel" class="btn btn-default" />
+                </div>
+            }
+        </div>
 }

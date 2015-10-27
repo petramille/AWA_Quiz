@@ -4,10 +4,11 @@
     ViewBag.Title = "AddUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h4>Add new user</h4>
+<div class="jumbotron">
 
-<p>Fill in the boxes below to add a new user</p>
+    <p>Fill in the boxes below to add a new user</p>
 
+</div>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -16,7 +17,7 @@
         <hr />
         @Html.ValidationSummary(true, "")
 
-        
+
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -49,13 +50,13 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.EMailAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.EmailAddress, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EMailAddress, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EMailAddress, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
             </div>
         </div>
-       
+
         <p>Administrator</p>
         @Html.RadioButtonFor(model => model.Role, new { })
         <p>Teacher</p>
@@ -63,7 +64,7 @@
         <p>Student</p>
         @Html.RadioButtonFor(model => model.Role, new { })
 
-       
+
     </div>
 }
 <div class="form-group">

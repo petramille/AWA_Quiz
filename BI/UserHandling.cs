@@ -15,7 +15,7 @@ namespace BI
         public List<string> LogIn(string eMail, string password)
         {
             List<string> tmpUser = new List<string>();
-            tmpUser = myDataBase.ReadFromSQL(eMail, password, "sp_GetUser");
+            tmpUser = myDataBase.LogInSQL(eMail, password, "sp_GetUser");
 
             List<string> tmpList = new List<string>();
             if (tmpUser == null)

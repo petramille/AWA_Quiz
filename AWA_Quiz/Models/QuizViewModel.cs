@@ -36,7 +36,7 @@ namespace AWA_Quiz.Models
         //[RegularExpression(@"^[a-zA-Z0-9u+2423]{2,20}$", ErrorMessage = "")]
         public string QuestionDescription { get; set; }
         
-
+        [Required]
         public int NumberOfCorrectAnswers { get; set; }
 
         public List<Answer> answerList;
@@ -47,5 +47,15 @@ namespace AWA_Quiz.Models
         public string AnswerText { get; set; }
 
         public bool IsCorrect { get; set; }
+    }
+
+    public class TestList
+    {
+        public List<string> tests { get; set; }
+
+        public TestList()
+        {
+            this.tests = new List<string>();
+        }
     }
 }

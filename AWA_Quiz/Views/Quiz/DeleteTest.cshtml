@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h4>Delete test</h4>
+<div class="jumbotron">
 
-<p>Choose test or question to delete</p>
-
+    <p>Choose test or question to delete</p>
+</div>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -16,16 +16,21 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "")
-
-       
-        <div class="form-group">
-            @Html.LabelFor(model => model.QuizTitle, "QuizTitle", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("QuizTitle", null, htmlAttributes: new { @class = "form-control" } )
-                @Html.ValidationMessageFor(model => model.QuizTitle, "", new { @class = "text-danger" })
-            </div>
+        <p>Tests</p>
+        <div class="list-group text-left">
+            @foreach (var test in testList)
+            {
+                <a href="#" class="list-group-item select"><b>@test</b></a>
+            }
         </div>
-        
+        <p>Questions</p>
+        <div class="list-group text-left">
+            @foreach (var question in questionList)
+            {
+                <a href="#" class="list-group-item select"><b>@question</b></a>
+            }
+        </div>
+
     </div>
 }
 
@@ -33,11 +38,19 @@
     @using (Html.BeginForm("Index", "Quiz", FormMethod.Post))
     {
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Delete" class="btn btn-default" />
+            <input type="submit" value="Delete test" class="btn btn-default" />
         </div>
     }
 </div>
 
+<div class="form-group">
+    @using (Html.BeginForm("Index", "Quiz", FormMethod.Post))
+    {
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Delete question" class="btn btn-default" />
+        </div>
+    }
+</div>
 
 <div class="form-group">
     @using (Html.BeginForm("Index", "Quiz", FormMethod.Post))
