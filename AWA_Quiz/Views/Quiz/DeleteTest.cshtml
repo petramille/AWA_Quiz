@@ -6,6 +6,7 @@
 }
 
 <div class="jumbotron">
+    <br />
 
     <p>Choose test or question to delete</p>
 </div>
@@ -18,18 +19,12 @@
         @Html.ValidationSummary(true, "")
         <p>Tests</p>
         <div class="list-group text-left">
-            @foreach (var test in Model.testTitles)
+            @foreach (var test in Model)
             {
                 <a href="#" class="list-group-item select"><b>@test</b></a>
             }
         </div>
-        <p>Questions</p>
-        <div class="list-group text-left">
-            @foreach (var question in Model.questionTitles)
-            {
-                <a href="#" class="list-group-item select"><b>@question</b></a>
-            }
-        </div>
+        
 
     </div>
 }
@@ -44,10 +39,10 @@
 </div>
 
 <div class="form-group">
-    @using (Html.BeginForm("Index", "Quiz", FormMethod.Post))
+    @using (Html.BeginForm("DeleteQuestion", "Quiz", FormMethod.Post))
     {
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Delete question" class="btn btn-default" />
+            <input type="submit" value="Choose test to delete question from" class="btn btn-default" />
         </div>
     }
 </div>

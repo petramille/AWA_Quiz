@@ -7,7 +7,8 @@
 
 <div class="jumbotron">
     
-    <p> </p>
+    <br />
+
     <p>Add question details below</p>
 </div>
 @using (Html.BeginForm())
@@ -38,7 +39,7 @@
             @Html.LabelFor(model => model.AnswerText, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AnswerText, new { htmlAttributes = new { @class = "form-control" } })
-                <div class="col-md-50">
+                <div class="">
                     <p>Check the box if the answer is correct</p>
                     @Html.RadioButtonFor(model => model.IsCorrect, new { })
                     @Html.ValidationMessageFor(model => model.AnswerText, "", new { @class = "text-danger" })

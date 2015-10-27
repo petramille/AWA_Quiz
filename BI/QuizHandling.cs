@@ -41,7 +41,12 @@ namespace BI
             return allTests;
         }
 
-        //How to choose what quiz to display, id or title? use a view to get all quiz info?
+        public List<string> ReadAllQuestions(string quizTitle)
+        {
+            List<string> allQuestions = myDataBase.ReadAllTestsSQL($"SELECT QuestionTitle FROM View_GetAllQuizData WHERE {quizTitle} = @QuizTitle");
+            return allQuestions;
+        }
+        
         public void ReadQuiz(string title)
         {
             List<string> myQuiz = myDataBase.ReadFromSQL(title, "sp_GetQuiz");
@@ -59,7 +64,7 @@ namespace BI
             myDataBase.EditSQL(commandLine);
         }
 
-        //Trigger delete from intermediate tables and Answer table???? Now only the question is deleted
+        //Trigger delete from intermediate tables and Answer table???? Now only the question is deleted.
         public void DeleteQuestion(string questionTitle)
         {
             string commandLine = $"DELETE FROM Question WHERE {questionTitle} = @QuestionTitle";

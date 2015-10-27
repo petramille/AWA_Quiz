@@ -68,7 +68,7 @@ namespace AWA_Quiz.Controllers
 
         public ActionResult DeleteTest()
         {
-            List<string> quizTitles = new List<string>();
+            List<Models.QuizViewModel> quizTitles = new List<Models.QuizViewModel>();
             List<string> allTests = myQuizHandling.ReadAllTests();
 
             if (allTests == null)
@@ -76,10 +76,10 @@ namespace AWA_Quiz.Controllers
                 return RedirectToAction("Index", "Quiz");
             }
 
-            foreach (var test in allTests)
-            {
-                quizTitles.Add(test);
-            }
+            //foreach (var test in allTests)
+            //{
+            //    quizTitles.Add();
+            //}
             return View(quizTitles);
         }
 
@@ -87,21 +87,43 @@ namespace AWA_Quiz.Controllers
 
         //Find a way to distinguish between quiz or question
         [HttpPost]
-        public ActionResult DeleteTest(string title, string quizOrQuestion)
+        public ActionResult DeleteTest(string title)
         {
-            if (quizOrQuestion == "question")
-            {
-            myQuizHandling.DeleteQuestion(title);
+            
+            myQuizHandling.DeleteQuiz(title);
                 return View();
-            }
-            else if (quizOrQuestion == "quiz")
-            {
-                myQuizHandling.DeleteQuiz(title);
-                return View();
-            }
-            return RedirectToAction("DeleteTest");
+            
+            
         }
 
+
+        public ActionResult DeleteQuestion(string quizTitle)
+        {
+            List<Models.QuizViewModel> questionTitles = new List<Models.QuizViewModel>();
+            List<string> allTests = myQuizHandling.ReadAllQuestions(quizTitle);
+
+            if (allTests == null)
+            {
+                return RedirectToAction("Index", "Quiz");
+            }
+
+            //foreach (var test in allTests)
+            //{
+            //    quizTitles.Add();
+            //}
+            return View(questionTitles);
+        }
+
+
+
+        //Find a way to distinguish between quiz or question
+        [HttpPost]
+        public ActionResult DeleteQuestion(string questionTitle, string quizTitle)
+        {
+                myQuizHandling.DeleteQuestion(questionTitle);
+            
+            return View();
+        }
 
 
         public ActionResult EditTest()

@@ -1,17 +1,15 @@
 ﻿@model List<AWA_Quiz.Models.QuizViewModel>
-   
 
 @{
-    ViewBag.Title = "EditTest";
+    ViewBag.Title = "DeleteQuestion";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="jumbotron">
     <br />
 
-    <p>Choose test or question to edit</p>
+    <p>Choose question to delete</p>
 </div>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -19,26 +17,27 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "")
-
+        <p>Tests</p>
         <div class="list-group text-left">
-            @foreach (var test in Model)
+            @foreach (var question in Model)
             {
-                <a href="#" class="list-group-item select"><b>@test</b></a>
+                <a href="#" class="list-group-item select"><b>@question</b></a>
             }
         </div>
-       
 
 
     </div>
 }
+
 <div class="form-group">
-    @using (Html.BeginForm("AddQuestion", "Quiz", FormMethod.Post))
+    @using (Html.BeginForm("DeleteQuestion", "Quiz", FormMethod.Post))
     {
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Choose" class="btn btn-default" />
+            <input type="submit" value="Delete question" class="btn btn-default" />
         </div>
     }
 </div>
+
 
 <div class="form-group">
     @using (Html.BeginForm("Index", "Quiz", FormMethod.Post))
