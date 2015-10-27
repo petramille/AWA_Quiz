@@ -1,4 +1,4 @@
-﻿@model AWA_Quiz.Models.QuizViewModel
+﻿@model List<AWA_Quiz.Models.QuizViewModel>
 
 @{
     ViewBag.Title = "DeleteTest";
@@ -18,14 +18,14 @@
         @Html.ValidationSummary(true, "")
         <p>Tests</p>
         <div class="list-group text-left">
-            @foreach (var test in testList)
+            @foreach (var test in Model.testTitles)
             {
                 <a href="#" class="list-group-item select"><b>@test</b></a>
             }
         </div>
         <p>Questions</p>
         <div class="list-group text-left">
-            @foreach (var question in questionList)
+            @foreach (var question in Model.questionTitles)
             {
                 <a href="#" class="list-group-item select"><b>@question</b></a>
             }

@@ -13,7 +13,7 @@ namespace DatabaseCommunication
         SqlConnection myConnection = new SqlConnection();
         SqlCommand myCommand = new SqlCommand();
 
-        string connectionString = Resources.connectionString;
+        string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=AWA_Database;Integrated Security=SSPI";
 
         public List<string> LogInSQL(string eMailAddress, string password, string commandText)
         {

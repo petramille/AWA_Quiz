@@ -68,7 +68,7 @@ namespace AWA_Quiz.Controllers
 
         public ActionResult DeleteTest()
         {
-            Models.TestList testList = new Models.TestList();
+            List<string> quizTitles = new List<string>();
             List<string> allTests = myQuizHandling.ReadAllTests();
 
             if (allTests == null)
@@ -78,9 +78,9 @@ namespace AWA_Quiz.Controllers
 
             foreach (var test in allTests)
             {
-                testList.tests.Add(test);
+                quizTitles.Add(test);
             }
-            return View(testList);
+            return View(quizTitles);
         }
 
 
@@ -106,7 +106,7 @@ namespace AWA_Quiz.Controllers
 
         public ActionResult EditTest()
         {
-            Models.TestList testList = new Models.TestList();
+            
             List<string> allTests = myQuizHandling.ReadAllTests();
 
             if (allTests == null)
@@ -114,11 +114,11 @@ namespace AWA_Quiz.Controllers
                 return RedirectToAction("Index", "Quiz");
             }
 
-            foreach (var test in allTests)
-            {
-                testList.tests.Add(test);
-            }
-            return View(testList);
+            //foreach (var test in allTests)
+            //{
+            //    testList.tests.Add(test);
+            //}
+            return View(allTests);
             
         }
 
@@ -133,18 +133,18 @@ namespace AWA_Quiz.Controllers
 
         public ActionResult StartTest()
         {
-            Models.TestList testList = new Models.TestList();
+          
             List<string> allTests = myQuizHandling.ReadAllTests();
             if (allTests == null)
             {
-                return RedirectToAction("Index", "Quiz");
+                return RedirectToAction("Question", "Quiz");
             }
 
-            foreach (var test in allTests)
-            {
-                testList.tests.Add(test);
-            }
-            return View(testList);
+            //foreach (var test in allTests)
+            //{
+            //    testList.tests.Add(test);
+            //}
+            return View(allTests);
             
         }
 
@@ -168,6 +168,19 @@ namespace AWA_Quiz.Controllers
         public ActionResult ViewResult(string number)
         {
             return RedirectToAction("ViewResults", number);
+        }
+
+        public ActionResult Question()
+        {
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public ActionResult Question(string questionTitle, bool isCorrect)
+        {
+            return View();
         }
     }
 }

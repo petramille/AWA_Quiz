@@ -61,7 +61,7 @@ namespace DatabaseCommunication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data Source=localhost\SQLEXPRESS;Initial Catalog=Contacts;Integrated Security=SSPI.
+        ///   Looks up a localized string similar to Data Source=localhost\SQLEXPRESS;Initial Catalog=AWA_Database;Integrated Security=SSPI.
         /// </summary>
         internal static string connectionString {
             get {

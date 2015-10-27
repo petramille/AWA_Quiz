@@ -6,28 +6,18 @@
 }
 
 <div class="jumbotron">
-    <h4>Question x</h4>
+    <h4>Possible tests to take</h4>
 </div>
 
 @using (Html.BeginForm())
 {
-    <div>
-        @Html.TextBoxFor(model => model.QuestionTitle, new { })
-    </div>
-
-        <div>
-            @Html.TextBoxFor(model => model.QuestionDescription, new { })
-        </div>
-
-        <div>
-            @Html.TextBoxFor(model => model.AnswerText, new { })
-        </div>
+    
 
         <div class="form-group">
             @using (Html.BeginForm("StartTest", "Quiz", FormMethod.Post))
             {
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Next" class="btn btn-default" />
+                    <input type="submit" value="Start test" class="btn btn-default" />
                 </div>
             }
         </div>

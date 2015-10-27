@@ -7,7 +7,7 @@
 
 <div class="jumbotron">
     <h3>Home</h3>
-    <p class="lead">Welcome to your own personal homepage!</p>
+    <p class="lead">Welcome to your personal page</p>
 </div>
 
 @*Another message if teacher or admin log in*@
@@ -16,7 +16,7 @@
 <p>Choose how to proceed by clicking one of the buttons below</p>
 
 <div>
-    <h4>Test modifications</h4>
+    <h4>Modify tests</h4>
     <td>
         @Html.ActionLink("Add Test", "AddTest", "Quiz", new { @class = "btn btn-default" })
         @Html.ActionLink("Delete Test", "DeleteTest", "Quiz", new { @class = "btn btn-default" })
@@ -32,7 +32,7 @@
         @Html.ActionLink("Start review", "StartReview", "Review", new { @class = "btn btn-default" })
     </td>
     <td>
-    <h4>User modifications</h4>
+    <h4>Modify user</h4>
     @Html.ActionLink("Edit User", "AddUser", "User", new { @class = "btn btn-default" })
 
     </td>

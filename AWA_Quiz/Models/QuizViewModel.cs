@@ -41,6 +41,10 @@ namespace AWA_Quiz.Models
 
         public List<Answer> answerList;
 
+        public List<string> testTitles { get; set; }
+
+        public List<string> questionTitles { get; set; }
+
         [DisplayName("Answer")]
         [Required]
         [DataTypeAttribute(DataType.MultilineText)]
@@ -49,13 +53,5 @@ namespace AWA_Quiz.Models
         public bool IsCorrect { get; set; }
     }
 
-    public class TestList
-    {
-        public List<string> tests { get; set; }
-
-        public TestList()
-        {
-            this.tests = new List<string>();
-        }
-    }
+    
 }

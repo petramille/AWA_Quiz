@@ -1,0 +1,106 @@
+﻿@model AWA_Quiz.Models.QuizViewModel
+
+@{
+    ViewBag.Title = "Question";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h4>Question</h4>
+</div>
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuestionTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.QuestionTitle, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuestionDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.QuestionDescription, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.AnswerText, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.AnswerText, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-md-50">
+                    <p>Check the box if the answer is correct</p>
+                    @Html.RadioButtonFor(model => model.IsCorrect, new { })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AnswerText, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.AnswerText, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-md-50">
+                    <p>Check the box if the answer is correct</p>
+                    @Html.RadioButtonFor(model => model.IsCorrect, new { })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AnswerText, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.AnswerText, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-md-50">
+                    <p>Check the box if the answer is correct</p>
+                    @Html.RadioButtonFor(model => model.IsCorrect, new { })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AnswerText, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.AnswerText, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-md-50">
+                    <p>Check the box if the answer is correct</p>
+                    @Html.RadioButtonFor(model => model.IsCorrect, new { })
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        @using (Html.BeginForm("Question", "Quiz", FormMethod.Post))
+        {
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Next" class="btn btn-default" />
+            </div>
+        }
+    </div>
+    <div class="form-group">
+        @using (Html.BeginForm("Question", "Quiz", FormMethod.Post))
+        {
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Previous" class="btn btn-default" />
+            </div>
+        }
+    </div>
+    <div class="form-group">
+        @using (Html.BeginForm("Index", "Quiz", FormMethod.Post))
+        {
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Cancel" class="btn btn-default" />
+            </div>
+        }
+    </div>
+}
